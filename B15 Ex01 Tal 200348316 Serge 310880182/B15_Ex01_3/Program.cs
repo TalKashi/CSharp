@@ -8,14 +8,14 @@ namespace B15_Ex01_3
     {
         public static void Main()
         {
-            int numOfLinesInClock = readInputFromUser();
+            int numOfLinesInClock = getInputFromUser();
             B15_Ex01_2.Program.PrintSandClock(numOfLinesInClock);
             Console.ReadKey();
         }
 
-        private static int readInputFromUser()
+        private static int getInputFromUser()
         {
-            int numOfLinesInClock = 0;
+            int numOfLinesInClock;
             Console.WriteLine("Please enter the number of lines for the sand clock:");
             string inputStr = Console.ReadLine();
             while (!int.TryParse(inputStr, out numOfLinesInClock) || numOfLinesInClock < 0)
