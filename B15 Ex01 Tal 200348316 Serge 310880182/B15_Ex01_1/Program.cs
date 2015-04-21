@@ -33,7 +33,7 @@ namespace B15_Ex01_1
                 }
             }
 
-            string concatBinarySrting = concatStringArray(binaryRepresentation);
+            string concatBinarySrting = concatStringArrayWithSpaces(binaryRepresentation);
             // WYSIWYG
             string outputMsg = string.Format(
 @"The binary numbers are: {0}.
@@ -46,7 +46,7 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
             Console.WriteLine(outputMsg);
         }
 
-        private static string concatStringArray(string[] i_BinaryRepresentation)
+        private static string concatStringArrayWithSpaces(string[] i_BinaryRepresentation)
         {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < i_BinaryRepresentation.Length; i++)
