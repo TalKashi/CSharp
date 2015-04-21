@@ -17,11 +17,11 @@ namespace B15_Ex01_3
         {
             int numOfLinesInClock;
             Console.WriteLine("Please enter the number of lines for the sand clock:");
-            string inputStr = Console.ReadLine();
-            while (!int.TryParse(inputStr, out numOfLinesInClock) || numOfLinesInClock < 0)
+            string inputStrFromUser = Console.ReadLine();
+            while (!int.TryParse(inputStrFromUser, out numOfLinesInClock) || numOfLinesInClock < 0)
             {
                 Console.WriteLine("The input you entered is invalid. Please try again.");
-                inputStr = Console.ReadLine();
+                inputStrFromUser = Console.ReadLine();
             }
 
             return numOfLinesInClock;
