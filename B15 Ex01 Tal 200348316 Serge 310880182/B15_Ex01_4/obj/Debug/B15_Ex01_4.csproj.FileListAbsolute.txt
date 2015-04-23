@@ -1,0 +1,6 @@
+C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_4\bin\Debug\B15_Ex01_4.exe.config
+C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_4\bin\Debug\B15_Ex01_4.exe
+C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_4\bin\Debug\B15_Ex01_4.pdb
+C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_4\obj\Debug\B15_Ex01_4.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_4\obj\Debug\B15_Ex01_4.exe
+C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_4\obj\Debug\B15_Ex01_4.pdb
