@@ -43,17 +43,15 @@ namespace B15_Ex01_4
                 return false;
             }
 
-            char[] inputStrFromAsCharArray = new char[i_InputStrFromUser.Length];
             return isStringConsistsOfOnlyDigits(i_InputStrFromUser) || 
                              isStringConsistsOfOnlyLetters(i_InputStrFromUser);
         }
 
         private static bool isStringConsistsOfOnlyDigits(string i_StringToCheck)
         {
-            char[] inputStrFromAsCharArray = new char[i_StringToCheck.Length];
-            for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+            for (int i = 0; i < i_StringToCheck.Length; i++)
             {
-                if (!char.IsDigit(inputStrFromAsCharArray[i]))
+                if (!char.IsDigit(i_StringToCheck[i]))
                 {
                     return false;
                 }
@@ -64,10 +62,9 @@ namespace B15_Ex01_4
 
         private static bool isStringConsistsOfOnlyLetters(string i_StringToCheck)
         {
-            char[] inputStrFromAsCharArray = new char[i_StringToCheck.Length];
-            for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+            for (int i = 0; i < i_StringToCheck.Length; i++)
             {
-                if (!char.IsLetter(inputStrFromAsCharArray[i]))
+                if (!char.IsLetter(i_StringToCheck[i]))
                 {
                     return false;
                 }
@@ -78,10 +75,9 @@ namespace B15_Ex01_4
 
         private static bool isPalindrome(string i_StringToCheck)
         {
-            char[] inputStrFromAsCharArray = new char[i_StringToCheck.Length];
-            for (int i = 0; i < inputStrFromAsCharArray.Length / 2; i++)
+            for (int i = 0; i < i_StringToCheck.Length / 2; i++)
             {
-                if (inputStrFromAsCharArray[i] != inputStrFromAsCharArray[inputStrFromAsCharArray.Length - 1 - i])
+                if (i_StringToCheck[i] != i_StringToCheck[i_StringToCheck.Length - 1 - i])
                 {
                     return false;
                 }
@@ -93,10 +89,9 @@ namespace B15_Ex01_4
         private static int calcNumOfUpperCase(string i_StringToCheck)
         {
             int numOfUpperCase = 0;
-            char[] inputStrFromAsCharArray = new char[i_StringToCheck.Length];
-            for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+            for (int i = 0; i < i_StringToCheck.Length; i++)
             {
-                if (char.IsUpper(inputStrFromAsCharArray[i]))
+                if (char.IsUpper(i_StringToCheck[i]))
                 {
                     numOfUpperCase++;
                 }
@@ -108,10 +103,9 @@ namespace B15_Ex01_4
         private static int calcSum(string i_StringToCheck)
         {
             int sum = 0;
-            char[] inputStrFromAsCharArray = new char[i_StringToCheck.Length];
-            for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+            for (int i = 0; i < i_StringToCheck.Length; i++)
             {
-                sum += inputStrFromAsCharArray[i] - '0';
+                sum += i_StringToCheck[i] - '0';
             }
 
             return sum;
