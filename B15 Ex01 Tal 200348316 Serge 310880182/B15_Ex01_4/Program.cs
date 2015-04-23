@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace B15_Ex01_4
 {
@@ -26,11 +24,12 @@ namespace B15_Ex01_4
                     Console.WriteLine("The sum of digits is: " + calcSum(userInput));
                 }
             }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
         }
-
-
 
         private static string getInputFromUser()
         {
@@ -41,92 +40,122 @@ namespace B15_Ex01_4
                 Console.WriteLine("Wrong input, try again");
                 inputStrFromUser = Console.ReadLine();
             }
+
             return inputStrFromUser;
         }
 
-
-        private static bool isValidInput(string i_inputStrFromUser)
+        private static bool isValidInput(string i_InputStrFromUser)
         {
-            if (i_inputStrFromUser.Length != 10) 
+            if (i_InputStrFromUser.Length != 10) 
             {
                 return false;
             }
+<<<<<<< HEAD
             return isStringConsistsOfOnlyDigits(i_inputStrFromUser) || 
                              isStringConsistsOfOnlyLetters(i_inputStrFromUser);
+=======
+
+            return isStringConsistsOfOnlyDigits(i_InputStrFromUser) || 
+                             isStringConsistsOfOnlyLetters(i_InputStrFromUser);
+>>>>>>> origin/master
         }
 
-        private static bool isStringConsistsOfOnlyDigits(string i_stringToCheck)
+        private static bool isStringConsistsOfOnlyDigits(string i_StringToCheck)
         {
+<<<<<<< HEAD
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
             inputStrFromAsCharArray= i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+=======
+            for (int i = 0; i < i_StringToCheck.Length; i++)
+>>>>>>> origin/master
             {
-                if (!char.IsDigit(inputStrFromAsCharArray[i]))
+                if (!char.IsDigit(i_StringToCheck[i]))
                 {
                     return false;
                 }
-
             }
+
             return true;
         }
 
-        private static bool isStringConsistsOfOnlyLetters(string i_stringToCheck)
+        private static bool isStringConsistsOfOnlyLetters(string i_StringToCheck)
         {
+<<<<<<< HEAD
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
             inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+=======
+            for (int i = 0; i < i_StringToCheck.Length; i++)
+>>>>>>> origin/master
             {
-                if (!char.IsLetter(inputStrFromAsCharArray[i]))
+                if (!char.IsLetter(i_StringToCheck[i]))
                 {
                     return false;
                 }
-
             }
+
             return true;
         }
 
-        private static bool isPalindrome(string i_stringToCheck)
+        private static bool isPalindrome(string i_StringToCheck)
         {
+<<<<<<< HEAD
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
             inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length / 2; i++)
                 {
                     if (char.ToLower(inputStrFromAsCharArray[i]) != char.ToLower(inputStrFromAsCharArray[inputStrFromAsCharArray.Length - 1 - i]))
+=======
+            for (int i = 0; i < i_StringToCheck.Length / 2; i++)
+            {
+                if (i_StringToCheck[i] != i_StringToCheck[i_StringToCheck.Length - 1 - i])
+>>>>>>> origin/master
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
-        private static int calcNumOfUpperCase(string i_stringToCheck)
+        private static int calcNumOfUpperCase(string i_StringToCheck)
         {
+<<<<<<< HEAD
             int o_numOfUpperCase = 0;
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
             inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+=======
+            int numOfUpperCase = 0;
+            for (int i = 0; i < i_StringToCheck.Length; i++)
+>>>>>>> origin/master
             {
-                if (char.IsUpper(inputStrFromAsCharArray[i]))
+                if (char.IsUpper(i_StringToCheck[i]))
                 {
-                    o_numOfUpperCase++;
+                    numOfUpperCase++;
                 }
             }
-            return o_numOfUpperCase;
 
+            return numOfUpperCase;
         }
 
-        private static int calcSum(string i_stringToCheck)
+        private static int calcSum(string i_StringToCheck)
         {
+<<<<<<< HEAD
             int o_sum = 0;
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
             inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
+=======
+            int sum = 0;
+            for (int i = 0; i < i_StringToCheck.Length; i++)
+>>>>>>> origin/master
             {
-                o_sum += inputStrFromAsCharArray[i] - '0';
+                sum += i_StringToCheck[i] - '0';
             }
-            return o_sum;
 
+            return sum;
         }
-
     }
 }
