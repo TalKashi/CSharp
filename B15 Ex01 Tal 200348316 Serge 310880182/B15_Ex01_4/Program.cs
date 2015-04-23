@@ -8,22 +8,24 @@ namespace B15_Ex01_4
     {
         public static void Main()
         {
-            string userInput = getInputFromUser();
-            if (isPalindrome(userInput)) 
+            while (true)
             {
-                Console.WriteLine("Is Palindrome");
-            }
+                string userInput = getInputFromUser();
+                if (isPalindrome(userInput))
+                {
+                    Console.WriteLine("Is Palindrome");
+                }
 
-            if (isStringConsistsOfOnlyLetters(userInput)) 
-            {
-                Console.WriteLine("The number of upper case letters is: " + calcNumOfUpperCase(userInput));
-            }
+                if (isStringConsistsOfOnlyLetters(userInput))
+                {
+                    Console.WriteLine("The number of upper case letters is: " + calcNumOfUpperCase(userInput));
+                }
 
-            if (isStringConsistsOfOnlyDigits(userInput))
-            {
-                Console.WriteLine("The sum of digits is: " + calcSum(userInput));
+                if (isStringConsistsOfOnlyDigits(userInput))
+                {
+                    Console.WriteLine("The sum of digits is: " + calcSum(userInput));
+                }
             }
-
 
 
         }
@@ -49,7 +51,6 @@ namespace B15_Ex01_4
             {
                 return false;
             }
-            char[] inputStrFromAsCharArray = new char[i_inputStrFromUser.Length];
             return isStringConsistsOfOnlyDigits(i_inputStrFromUser) || 
                              isStringConsistsOfOnlyLetters(i_inputStrFromUser);
         }
@@ -57,6 +58,7 @@ namespace B15_Ex01_4
         private static bool isStringConsistsOfOnlyDigits(string i_stringToCheck)
         {
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
+            inputStrFromAsCharArray= i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
             {
                 if (!char.IsDigit(inputStrFromAsCharArray[i]))
@@ -71,6 +73,7 @@ namespace B15_Ex01_4
         private static bool isStringConsistsOfOnlyLetters(string i_stringToCheck)
         {
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
+            inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
             {
                 if (!char.IsLetter(inputStrFromAsCharArray[i]))
@@ -85,9 +88,10 @@ namespace B15_Ex01_4
         private static bool isPalindrome(string i_stringToCheck)
         {
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
+            inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length / 2; i++)
                 {
-                    if (inputStrFromAsCharArray[i] != inputStrFromAsCharArray[inputStrFromAsCharArray.Length - 1 - i])
+                    if (char.ToLower(inputStrFromAsCharArray[i]) != char.ToLower(inputStrFromAsCharArray[inputStrFromAsCharArray.Length - 1 - i]))
                 {
                     return false;
                 }
@@ -99,6 +103,7 @@ namespace B15_Ex01_4
         {
             int o_numOfUpperCase = 0;
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
+            inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
             {
                 if (char.IsUpper(inputStrFromAsCharArray[i]))
@@ -114,6 +119,7 @@ namespace B15_Ex01_4
         {
             int o_sum = 0;
             char[] inputStrFromAsCharArray = new char[i_stringToCheck.Length];
+            inputStrFromAsCharArray = i_stringToCheck.ToCharArray();
             for (int i = 0; i < inputStrFromAsCharArray.Length; i++)
             {
                 o_sum += inputStrFromAsCharArray[i] - '0';
