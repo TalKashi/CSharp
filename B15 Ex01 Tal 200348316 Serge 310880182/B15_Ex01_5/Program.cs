@@ -7,10 +7,18 @@ namespace B15_Ex01_5
         public static void Main()
         {
             string userInput = getInputFromUser();
-            Console.WriteLine("Number of digits which larger than the first digit is: " + calcNumOfDigitsLargerThanFirstDigit(userInput));
-            Console.WriteLine("Number of digits which smaller than the first digit is: " + calcNumOfDigitsSmallerThanFirstDigit(userInput));
-            Console.WriteLine("The largest degit is: " + findLargestDigitInString(userInput));
-            Console.WriteLine("The smallest degit is: " + findSmallestDigitInString(userInput));
+
+            // WYSIWYG
+            string outputMsg = string.Format(
+@"Number of digits which larger than the first digit is: {0}
+Number of digits which smaller than the first digit is: {1}
+The largest degit is: {2}
+The smallest degit is: {3}", calcNumOfDigitsLargerThanFirstDigit(userInput),
+                calcNumOfDigitsSmallerThanFirstDigit(userInput),
+                findLargestDigitInString(userInput),
+                findSmallestDigitInString(userInput));
+
+            Console.WriteLine(outputMsg);
         }
 
         private static string getInputFromUser()

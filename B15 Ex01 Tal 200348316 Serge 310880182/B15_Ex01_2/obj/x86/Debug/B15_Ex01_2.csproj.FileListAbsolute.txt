@@ -1,4 +1,0 @@
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_2\bin\x86\Debug\B15_Ex01_2.exe
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_2\bin\x86\Debug\B15_Ex01_2.pdb
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_2\obj\x86\Debug\B15_Ex01_2.exe
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_2\obj\x86\Debug\B15_Ex01_2.pdb

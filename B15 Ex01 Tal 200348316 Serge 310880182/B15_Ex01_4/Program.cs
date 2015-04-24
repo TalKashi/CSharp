@@ -102,13 +102,13 @@ namespace B15_Ex01_4
 
         private static int calcSumOfDigitsInString(string i_StringToCheck)
         {
-            int sum = 0;
+            int sumOfDigitsInString = 0;
             for (int i = 0; i < i_StringToCheck.Length; i++)
             {
-                sum += i_StringToCheck[i] - '0';
+                sumOfDigitsInString += i_StringToCheck[i] - '0';
             }
 
-            return sum;
+            return sumOfDigitsInString;
         }
     }
 }

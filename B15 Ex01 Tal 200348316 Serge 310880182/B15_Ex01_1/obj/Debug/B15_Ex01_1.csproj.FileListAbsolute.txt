@@ -1,7 +1,0 @@
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_1\bin\Debug\B15_Ex01_1.exe
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_1\bin\Debug\B15_Ex01_1.pdb
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_1\obj\Debug\B15_Ex01_1.csprojResolveAssemblyReference.cache
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_1\obj\Debug\B15_Ex01_1.exe
-C:\Projects\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_1\obj\Debug\B15_Ex01_1.pdb
-C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_1\obj\Debug\B15_Ex01_1.exe
-C:\Users\User\Desktop\Studies\שנה ג\C#\EX1\CSharp\B15 Ex01 Tal 200348316 Serge 310880182\B15_Ex01_1\obj\Debug\B15_Ex01_1.pdb
