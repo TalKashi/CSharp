@@ -6,23 +6,20 @@ namespace B15_Ex01_4
     {
         public static void Main()
         {
-            while (true)
+            string userInput = getInputFromUser();
+            if (isPalindrome(userInput))
             {
-                string userInput = getInputFromUser();
-                if (isPalindrome(userInput))
-                {
-                    Console.WriteLine("Is Palindrome");
-                }
+                Console.WriteLine("Is Palindrome");
+            }
 
-                if (isStringConsistsOfOnlyLetters(userInput))
-                {
-                    Console.WriteLine("The number of upper case letters is: " + calcNumOfUpperCase(userInput));
-                }
+            if (isStringConsistsOfOnlyLetters(userInput))
+            {
+                Console.WriteLine("The number of upper case letters is: " + calcNumOfUpperCase(userInput));
+            }
 
-                if (IsStringConsistsOfOnlyDigits(userInput))
-                {
-                    Console.WriteLine("The sum of digits is: " + calcSumOfDigitsInString(userInput));
-                }
+            if (IsStringConsistsOfOnlyDigits(userInput))
+            {
+                Console.WriteLine("The sum of digits is: " + calcSumOfDigitsInString(userInput));
             }
         }
 

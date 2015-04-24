@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Text;
 
 namespace B15_Ex01_5
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
-            while (true)
-            {
-                string userInput = getInputFromUser();
-                Console.WriteLine("Number of digits which larger than the first digit is: " + calcNumOfDigitsLargerThanFirstDigit(userInput));
-                Console.WriteLine("Number of digits which smaller than the first digit is: " + calcNumOfDigitsSmallerThanFirstDigit(userInput));
-                Console.WriteLine("The largest degit is: " + findLargestDigitInString(userInput));
-                Console.WriteLine("The smallest degit is: " + findSmallestDigitInString(userInput));
-            }
-
+            string userInput = getInputFromUser();
+            Console.WriteLine("Number of digits which larger than the first digit is: " + calcNumOfDigitsLargerThanFirstDigit(userInput));
+            Console.WriteLine("Number of digits which smaller than the first digit is: " + calcNumOfDigitsSmallerThanFirstDigit(userInput));
+            Console.WriteLine("The largest degit is: " + findLargestDigitInString(userInput));
+            Console.WriteLine("The smallest degit is: " + findSmallestDigitInString(userInput));
         }
-
 
         private static string getInputFromUser()
         {
@@ -38,68 +32,68 @@ namespace B15_Ex01_5
             {
                 return false;
             }
+
             return B15_Ex01_4.Program.IsStringConsistsOfOnlyDigits(i_InputStrFromUser);
         }
 
         private static int calcNumOfDigitsLargerThanFirstDigit(string i_InputStrFromUser)
         {
             int firstDigit = i_InputStrFromUser[0] - '0';
-            int NumOfDigitsLargerThanFirstDigit = 0;
-            for (int i = 1; i < i_InputStrFromUser.Length ; i++ )
+            int numOfDigitsLargerThanFirstDigit = 0;
+            for (int i = 1; i < i_InputStrFromUser.Length; i++ )
             {
                 if (i_InputStrFromUser[i] - '0' > firstDigit) 
                 {
-                    NumOfDigitsLargerThanFirstDigit++;
+                    numOfDigitsLargerThanFirstDigit++;
                 }
             }
-            return NumOfDigitsLargerThanFirstDigit;
-            
+
+            return numOfDigitsLargerThanFirstDigit;
         }
 
         private static int calcNumOfDigitsSmallerThanFirstDigit(string i_InputStrFromUser)
         {
             int firstDigit = i_InputStrFromUser[0] - '0';
-            int NumOfDigitsSmallerThanFirstDigit = 0;
+            int numOfDigitsSmallerThanFirstDigit = 0;
             for (int i = 1; i < i_InputStrFromUser.Length; i++)
             {
                 if (i_InputStrFromUser[i] - '0' < firstDigit)
                 {
-                    NumOfDigitsSmallerThanFirstDigit++;
+                    numOfDigitsSmallerThanFirstDigit++;
                 }
             }
-            return NumOfDigitsSmallerThanFirstDigit;
 
+            return numOfDigitsSmallerThanFirstDigit;
         }
 
         private static int findLargestDigitInString(string i_InputStrFromUser)
          {
             int maxDigit = -1;
-            int currentDigit;
             for (int i = 0; i < i_InputStrFromUser.Length; i++)
             {
-                currentDigit = i_InputStrFromUser[i] - '0';
+                int currentDigit = i_InputStrFromUser[i] - '0';
                 if (currentDigit > maxDigit)
                 {
                     maxDigit = currentDigit;
                 }
             }
+
             return maxDigit;
          }
 
         private static int findSmallestDigitInString(string i_InputStrFromUser)
         {
             int minDigit = 10;
-            int currentDigit;
             for (int i = 0; i < i_InputStrFromUser.Length; i++)
             {
-                currentDigit = i_InputStrFromUser[i] - '0';
+                int currentDigit = i_InputStrFromUser[i] - '0';
                 if (currentDigit < minDigit)
                 {
                     minDigit = currentDigit;
                 }
             }
+
             return minDigit;
         }
-
     }
 }

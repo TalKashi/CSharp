@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace B15_Ex01_3
 {
@@ -8,9 +6,8 @@ namespace B15_Ex01_3
     {
         public static void Main()
         {
-            int numOfLinesInClock = getInputFromUser();
-            B15_Ex01_2.Program.PrintSandClock(numOfLinesInClock);
-            Console.ReadKey();
+           int numOfLinesInClock = getInputFromUser();
+           B15_Ex01_2.Program.PrintSandClock(numOfLinesInClock);
         }
 
         private static int getInputFromUser()

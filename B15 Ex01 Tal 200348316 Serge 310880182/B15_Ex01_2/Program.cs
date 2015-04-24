@@ -13,20 +13,19 @@ namespace B15_Ex01_2
         public static void PrintSandClock(int i_NumOfLinesInClock)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            // Handle even input
-            if (i_NumOfLinesInClock % 2 == 0)
+
+            // Handle odd input
+            if (i_NumOfLinesInClock % 2 == 1)
             {
-                i_NumOfLinesInClock++;
+                i_NumOfLinesInClock--;
             }
 
             for (int i = i_NumOfLinesInClock; i >= -i_NumOfLinesInClock; i -= 2)
             {
-                if (i != -1)
-                {
-                    int spaceFromStart = (i_NumOfLinesInClock - Math.Abs(i)) / 2;
-                    generateStars(stringBuilder, Math.Abs(i), spaceFromStart);
-                }
+                int spaceFromStart = (i_NumOfLinesInClock - Math.Abs(i)) / 2;
+                generateStars(stringBuilder, Math.Abs(i) + 1, spaceFromStart);
             }
+
             Console.WriteLine(stringBuilder.ToString());
         }
 
@@ -36,10 +35,12 @@ namespace B15_Ex01_2
             {
                 io_StringBuilder.Append(" ");
             }
+
             for (int i = 0; i < i_NumOfStars; i++)
             {
                 io_StringBuilder.Append("*");
             }
+
             io_StringBuilder.AppendLine();
         }
     }

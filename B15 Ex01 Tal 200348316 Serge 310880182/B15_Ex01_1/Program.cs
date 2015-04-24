@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace B15_Ex01_1
@@ -13,10 +12,12 @@ namespace B15_Ex01_1
             int totalValueOfNumbers = 0;
             int totalNumbersInBinaryRepresentation = 0;
             string[] inputsFromUser = new string[5];
+
             for (int i = 0; i < inputsFromUser.Length; i++)
             {
                 inputsFromUser[i] = getInputFromUser();
             }
+
             string[] binaryRepresentation = new string[inputsFromUser.Length];
             for (int i = 0; i < binaryRepresentation.Length; i++)
             {
@@ -34,15 +35,17 @@ namespace B15_Ex01_1
             }
 
             string concatBinarySrting = concatStringArrayWithSpaces(binaryRepresentation);
+
             // WYSIWYG
             string outputMsg = string.Format(
 @"The binary numbers are: {0}.
 There are {1} numbers which are an ascending series and {2} which are descending.
 The avarege number of digits in binary number is {3}.
-The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalOfAscendingNumbers,
+The general avarege of the inserted numbers is {4}.", concatBinarySrting, 
+                                                    totalOfAscendingNumbers,
                                                     totalOfDescendingNumbers,
-                                                    (float) totalNumbersInBinaryRepresentation/inputsFromUser.Length,
-                                                    (float) totalValueOfNumbers/inputsFromUser.Length);
+                                                    (float) totalNumbersInBinaryRepresentation / inputsFromUser.Length,
+                                                    (float) totalValueOfNumbers / inputsFromUser.Length);
             Console.WriteLine(outputMsg);
         }
 
@@ -53,6 +56,7 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
             {
                 stringBuilder.Append(i_BinaryRepresentation[i] + " ");
             }
+
             return stringBuilder.ToString();
         }
 
@@ -65,6 +69,7 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -77,6 +82,7 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -90,6 +96,7 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
                 Console.WriteLine("The input you entered is invalid. Please try again.");
                 inputStrFromUser = Console.ReadLine();
             }
+
             return inputStrFromUser;
         }
 
@@ -99,11 +106,13 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
             {
                 return false;
             }
+
             i_InputStrFromUser = i_InputStrFromUser.Trim();
             if (i_InputStrFromUser.Length != 3)
             {
                 return false;
             }
+
             for (int i = 0; i < i_InputStrFromUser.Length; i++)
             {
                 if (!char.IsDigit(i_InputStrFromUser[i]))
@@ -125,6 +134,7 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
             {
                 return "0";
             }
+
             while (number > 0)
             {
                 int reminder = number % 2;
@@ -138,6 +148,7 @@ The general avarege of the inserted numbers is {4}.", concatBinarySrting, totalO
             {
                 correctBinaryOrderStringBuilder.Append(reversedOrderBinaryStringBuilder[i]);
             }
+
             return correctBinaryOrderStringBuilder.ToString();
         }
     }
