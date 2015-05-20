@@ -45,9 +45,8 @@ namespace Ex03.GarageLogic
     {
         private string m_VehicleModel;
         private string m_LicenseNumber;
-        private float m_EnergyLeft;
-        private float m_MaxEnergy;
         private List<Wheel> m_WheelList;
+        private Engine m_Engine;
 
         public string Model
         {

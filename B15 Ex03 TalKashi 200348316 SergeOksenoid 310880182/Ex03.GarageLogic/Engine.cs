@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
-    class Engine
+    abstract class Engine
     {
+        private float m_EnergyLeft;
+        private float m_MaxEnergy;
+
+        public virtual float EnergyLeft
+        {
+            get
+            {
+                return (m_EnergyLeft / m_MaxEnergy) * 100f;
+            }
+        }
     }
 }

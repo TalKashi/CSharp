@@ -6,6 +6,14 @@
         private float m_CurrentAirPressure;
         private float m_MaxAirPressure;
 
+        public float MaxAirPressure
+        {
+            get
+            {
+                return m_MaxAirPressure;
+            }
+        }
+
         public Wheel(string i_Manufacturer, float i_CurrentAirPressure,float i_MaxAirPressure)
         {
             m_Manufacturer = i_Manufacturer;
