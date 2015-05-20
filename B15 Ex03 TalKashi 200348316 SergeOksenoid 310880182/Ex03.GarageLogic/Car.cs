@@ -8,5 +8,6 @@ namespace Ex03.GarageLogic
     {
        private eCarColor m_CarColor;
        private eNumOfDoors m_NumOfDoors;
+       private int m_NumOfWheels; 
     }
 }

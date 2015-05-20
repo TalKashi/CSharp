@@ -2,6 +2,13 @@
 
 namespace Ex03.GarageLogic
 {
+    public enum eStatus
+    {
+        InProgress,
+        Fixed,
+        Paid
+    }
+
     public enum eNumOfDoors
     {
         TwoDoors = 2,
