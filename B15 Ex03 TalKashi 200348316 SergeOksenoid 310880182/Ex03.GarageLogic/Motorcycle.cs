@@ -9,6 +9,7 @@ namespace Ex03.GarageLogic
 
        private eLicenseType m_LicenseType;
        private int m_Engine;
-       private int m_NumOfWheels; 
+       private int m_NumOfWheels;
+       private Engine m_Engine;
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class ElectricEngine
+    class ElectricEngine : Engine
     {
         private float m_TimeRemainsInHours;
         private float m_MaxEnergyInHOurs;

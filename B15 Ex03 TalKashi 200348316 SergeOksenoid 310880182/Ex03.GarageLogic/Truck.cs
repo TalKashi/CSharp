@@ -8,7 +8,8 @@ namespace Ex03.GarageLogic
     {
         private bool m_IsCarryingDangerous;
         private float currentWeight;
-        private int m_NumOfWheels; 
+        private int m_NumOfWheels;
+        private Engine m_Engine;
 
     }
 }
