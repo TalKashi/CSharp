@@ -38,7 +38,32 @@ namespace Ex03.GarageLogic
     {
         private string m_VehicleModel;
         private string m_LicenseNumber;
-        private float m_EnergyLetfInPrecentage;
+        private float m_EnergyLeft;
+        private float m_MaxEnergy;
         private List<Wheel> m_WheelList;
+
+        public string Model
+        {
+            get
+            {
+                return m_VehicleModel;
+            }
+        }
+
+        public string LicenseNumber
+        {
+            get
+            {
+                return m_LicenseNumber;
+            }
+        }
+
+        public float EnergyLeftPercentage
+        {
+            get
+            {
+                return (m_EnergyLeft / m_MaxEnergy) * 100f;
+            }
+        }
     }
 }
