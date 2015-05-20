@@ -25,7 +25,7 @@
         {
             if (m_CurrentAirPressure + i_AirToAdd > m_MaxAirPressure)
             {
-                throw new ValueOutOfRangeException(m_MaxAirPressure, m_CurrentAirPressure, i_AirToAdd, null);
+                throw new ValueOutOfRangeException(m_MaxAirPressure, m_CurrentAirPressure, i_AirToAdd);
             }
 
             m_CurrentAirPressure += i_AirToAdd;

@@ -2,11 +2,11 @@
 {
     internal abstract class Engine
     {
-        private readonly float r_MaxEnergy;
-        private float m_EnergyLeft;
-        private int m_EngineVolume;
+        protected readonly float r_MaxEnergy;
+        protected float m_EnergyLeft;
+        private int? m_EngineVolume;
 
-        public int EngineVolume
+        public int? EngineVolume
         {
             get
             {

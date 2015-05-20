@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    class Truck
+    internal class Truck : Vehicle
     {
-        private bool m_IsCarryingDangerous;
-        private float currentWeight;
-        private int m_NumOfWheels;
-        private Engine m_Engine;
+        private bool m_IsCarryingDangerousMaterials;
+        private float m_CurrentCarryingWeight;
+
+        public Truck(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, Engine i_Engine,
+            bool i_IsCarryingDangerousMaterials, float i_CurrentCarryingWeight)
+            : base(i_LicenseNumber, i_VehicleModel, i_WheelsList, i_Engine)
+        {
+            m_IsCarryingDangerousMaterials = i_IsCarryingDangerousMaterials;
+            m_CurrentCarryingWeight = i_CurrentCarryingWeight;
+        }
 
     }
 }

@@ -7,6 +7,9 @@ namespace Ex03.GarageLogic
         private float m_MaxValue;
         private float m_CurrentValue;
         private float m_ValueToAdd;
+        private float m_MaxAirPressure;
+        private float m_CurrentAirPressure;
+        private float i_AirToAdd;
 
         public float ValueToAdd
         {
@@ -40,6 +43,12 @@ namespace Ex03.GarageLogic
             m_MaxValue = i_MaxValue;
             m_CurrentValue = i_CurrentValue;
             m_ValueToAdd = i_ValueToAdd;
+        }
+
+        public ValueOutOfRangeException(float i_MaxValue, float i_CurrentValue, float i_ValueToAdd)
+            : this(i_MaxValue, i_CurrentValue, i_ValueToAdd, null)
+        {
+            // All init being done in other constructor
         }
     }
 }

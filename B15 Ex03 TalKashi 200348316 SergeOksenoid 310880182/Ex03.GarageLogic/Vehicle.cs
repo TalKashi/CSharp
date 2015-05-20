@@ -17,22 +17,6 @@ namespace Ex03.GarageLogic
         FiveDoors = 5
     }
 
-    public enum eFuelType
-    {
-        Soler, 
-        Octan95,
-        Octan96, 
-        Octan98
-    }
-
-    public enum eCarColor
-    {
-        Green,
-        Black,
-        White,
-        Red
-    }
-
     internal abstract class Vehicle
     {
         private readonly string r_LicenseNumber;
