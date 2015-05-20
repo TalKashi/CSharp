@@ -2,21 +2,6 @@
 
 namespace Ex03.GarageLogic
 {
-    public enum eStatus
-    {
-        InProgress,
-        Fixed,
-        Paid
-    }
-
-    public enum eNumOfDoors
-    {
-        TwoDoors = 2,
-        ThreeDoors = 3,
-        FourDoors = 4,
-        FiveDoors = 5
-    }
-
     internal abstract class Vehicle
     {
         private readonly string r_LicenseNumber;

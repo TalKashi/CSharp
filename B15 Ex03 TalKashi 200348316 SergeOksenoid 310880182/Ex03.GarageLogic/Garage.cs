@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        private Dictionary<string, Customer> m_Costomers;
+        private Dictionary<string, VehicleCard> m_Costomers;
 
         public void AddNewVehicle(string i_LicenceNumber, Type i_TypeOfVehicle)
         {

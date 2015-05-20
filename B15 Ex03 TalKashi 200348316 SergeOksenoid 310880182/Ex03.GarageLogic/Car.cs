@@ -11,6 +11,14 @@ namespace Ex03.GarageLogic
             White,
             Red
         }
+
+        public enum eNumOfDoors
+        {
+            TwoDoors = 2,
+            ThreeDoors = 3,
+            FourDoors = 4,
+            FiveDoors = 5
+        }
         
         private eCarColor m_CarColor;
         private eNumOfDoors m_NumOfDoors;
