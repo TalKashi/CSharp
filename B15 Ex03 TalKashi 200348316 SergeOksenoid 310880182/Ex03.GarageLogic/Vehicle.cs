@@ -18,6 +18,14 @@ namespace Ex03.GarageLogic
         Octan98
     }
 
+    public enum eLicenseType
+    {
+        A, 
+        A2, 
+        AB, 
+        B1
+    }
+
     public class Vehicle
     {
         private string m_VehicleModel;
