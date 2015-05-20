@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class ElectricMotorcycle : ElectricVehicle
+    class Truck
     {
-        eLicenseType m_LicenseType;
-        int m_Engine;
+        bool m_IsCarryingDangerous;
+        float currentWeight;
+
     }
 }
