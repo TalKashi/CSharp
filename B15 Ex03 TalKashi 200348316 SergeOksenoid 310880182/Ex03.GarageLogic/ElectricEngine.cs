@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
-    class ElectricEngine : Engine
+    internal class ElectricEngine : Engine
     {
-        private float m_TimeRemainsInHours;
-        private float m_MaxEnergyInHOurs;
 
-        public void AddEnergy() { }
+        public ElectricEngine(float i_MaxEnergy, float i_EnergyLeft, int i_EngineVolume)
+            : base(i_MaxEnergy, i_EnergyLeft, i_EngineVolume)
+        {
+            // Do nothing
+        }
+
+        public void ChargeBattery(float i_HoursToAdd)
+        {
+            if (m_EnergyLeft + i_HoursToAdd > r_MaxEnergy)
+            {
+                throw new ValueOutOfRangeException(r_MaxEnergy, m_EnergyLeft, i_HoursToAdd);
+            }
+
+            m_EnergyLeft += i_HoursToAdd;
+        }
 
     }
 }

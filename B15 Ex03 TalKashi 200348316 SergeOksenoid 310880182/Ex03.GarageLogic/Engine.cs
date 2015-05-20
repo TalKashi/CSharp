@@ -22,6 +22,22 @@
             }
         }
 
+        public float EnergyLeft
+        {
+            get
+            {
+                return m_EnergyLeft;
+            }
+        }
+
+        public float MaxEnergy
+        {
+            get
+            {
+                return r_MaxEnergy;
+            }
+        }
+
         protected Engine(float i_MaxEnergy, float i_EnergyLeft, int i_EngineVolume)
         {
             m_EnergyLeft = i_EnergyLeft;

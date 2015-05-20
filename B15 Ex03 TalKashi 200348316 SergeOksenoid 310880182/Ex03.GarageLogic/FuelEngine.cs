@@ -14,14 +14,6 @@ namespace Ex03.GarageLogic
 
         private eFuelType m_FuelType;
 
-        public float FuelLeft
-        {
-            get
-            {
-                return m_EnergyLeft;
-            }
-        }
-
         public float MaxFuel
         {
             get
