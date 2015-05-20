@@ -65,5 +65,39 @@ namespace Ex03.GarageLogic
                 return (m_EnergyLeft / m_MaxEnergy) * 100f;
             }
         }
+
+        public override bool Equals(object i_Object)
+        {
+            bool isEqual = false;
+
+            Vehicle otherVehicle = i_Object as Vehicle;
+            if (otherVehicle != null)
+            {
+                isEqual = LicenseNumber == otherVehicle.LicenseNumber;
+            }
+
+            return isEqual;
+        }
+
+        public override int GetHashCode()
+        {
+            return LicenseNumber.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            // TODO: Impelement something
+            return base.ToString();
+        }
+
+        public static bool operator ==(Vehicle i_VehicleA, Vehicle i_VehicleB)
+        {
+            return i_VehicleA.Equals(i_VehicleB);
+        }
+
+        public static bool operator !=(Vehicle i_VehicleA, Vehicle i_VehicleB)
+        {
+            return !(i_VehicleA == i_VehicleB);
+        }
     }
 }
