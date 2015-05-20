@@ -64,14 +64,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public virtual float EnergyLeft
-        {
-            get
-            {
-                return (m_EnergyLeft / m_MaxEnergy) * 100f;
-            }
-        }
-
         public override bool Equals(object i_Object)
         {
             bool isEqual = false;
