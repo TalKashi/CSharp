@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Truck
+    class Car
     {
-        private bool m_IsCarryingDangerous;
-        private float currentWeight;
-
+       private eCarColor m_CarColor;
+       private eNumOfDoors m_NumOfDoors;
     }
 }
