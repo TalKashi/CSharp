@@ -25,14 +25,6 @@ namespace Ex03.GarageLogic
         Octan98
     }
 
-    public enum eLicenseType
-    {
-        A, 
-        A2, 
-        AB, 
-        B1
-    }
-
     public enum eCarColor
     {
         Green,
@@ -41,12 +33,12 @@ namespace Ex03.GarageLogic
         Red
     }
 
-    public abstract class Vehicle
+    internal abstract class Vehicle
     {
+        private readonly string r_LicenseNumber;
         private string m_VehicleModel;
-        private string m_LicenseNumber;
-        private List<Wheel> m_WheelList;
-        private Engine m_Engine;
+        private List<Wheel> m_WheelsList;
+        protected Engine m_Engine;
 
         public string Model
         {
@@ -60,8 +52,24 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return m_LicenseNumber;
+                return r_LicenseNumber;
             }
+        }
+
+        public float EnergyLeftInPercentage
+        {
+            get
+            {
+                return m_Engine.EnergyLeftInPercentage;
+            }
+        }
+
+        protected Vehicle(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, Engine i_Engine )
+        {
+            r_LicenseNumber = i_LicenseNumber;
+            m_VehicleModel = i_VehicleModel;
+            m_WheelsList = i_WheelsList;
+            m_Engine = i_Engine;
         }
 
         public override bool Equals(object i_Object)
@@ -79,7 +87,7 @@ namespace Ex03.GarageLogic
 
         public override int GetHashCode()
         {
-            return LicenseNumber.GetHashCode();
+            return r_LicenseNumber.GetHashCode();
         }
 
         public override string ToString()

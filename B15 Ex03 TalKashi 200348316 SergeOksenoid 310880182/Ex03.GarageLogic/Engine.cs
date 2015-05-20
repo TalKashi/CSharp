@@ -1,16 +1,32 @@
 ﻿namespace Ex03.GarageLogic
 {
-    abstract class Engine
+    internal abstract class Engine
     {
+        private readonly float r_MaxEnergy;
         private float m_EnergyLeft;
-        private float m_MaxEnergy;
+        private int m_EngineVolume;
 
-        public virtual float EnergyLeft
+        public int EngineVolume
         {
             get
             {
-                return (m_EnergyLeft / m_MaxEnergy) * 100f;
+                return m_EngineVolume;
             }
+        }
+
+        public float EnergyLeftInPercentage
+        {
+            get
+            {
+                return (m_EnergyLeft / r_MaxEnergy) * 100f;
+            }
+        }
+
+        protected Engine(float i_MaxEnergy, float i_EnergyLeft, int i_EngineVolume)
+        {
+            m_EnergyLeft = i_EnergyLeft;
+            r_MaxEnergy = i_MaxEnergy;
+            m_EngineVolume = i_EngineVolume;
         }
     }
 }
