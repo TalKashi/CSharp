@@ -58,7 +58,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public float EnergyLeftPercentage
+        public virtual float EnergyLeft
         {
             get
             {
