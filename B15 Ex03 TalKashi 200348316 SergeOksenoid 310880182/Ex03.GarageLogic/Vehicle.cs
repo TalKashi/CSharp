@@ -26,10 +26,18 @@ namespace Ex03.GarageLogic
         B1
     }
 
-    public class Vehicle
+    public enum eCarColor
+    {
+        Green,
+        Black,
+        White,
+        Red
+    }
+
+    public abstract class Vehicle
     {
         private string m_VehicleModel;
-        private string m_LicenseType;
+        private string m_LicenseNumber;
         private float m_EnergyLetfInPrecentage;
         private List<Wheel> m_WheelList;
     }

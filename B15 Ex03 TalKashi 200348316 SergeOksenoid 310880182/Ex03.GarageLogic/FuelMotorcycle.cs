@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-public enum eLicenseType {A,A2,AB,B1}
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
     class FuelMotorcycle : FuelVehicle
     {
