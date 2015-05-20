@@ -1,6 +1,8 @@
-﻿namespace Ex03.GarageLogic
+﻿using System;
+
+namespace Ex03.GarageLogic
 {
-    class Wheel
+    internal class Wheel
     {
         private string m_Manufacturer;
         private float m_CurrentAirPressure;
@@ -14,7 +16,15 @@
             }
         }
 
-        public Wheel(string i_Manufacturer, float i_CurrentAirPressure,float i_MaxAirPressure)
+        public float CurrentAirPressure
+        {
+            get
+            {
+                return m_CurrentAirPressure;
+            }
+        }
+
+        public Wheel(string i_Manufacturer, float i_CurrentAirPressure, float i_MaxAirPressure)
         {
             m_Manufacturer = i_Manufacturer;
             m_CurrentAirPressure = i_CurrentAirPressure;
@@ -28,8 +38,12 @@
                 throw new ValueOutOfRangeException(m_MaxAirPressure, m_CurrentAirPressure, i_AirToAdd);
             }
 
+            if (i_AirToAdd < 0)
+            {
+                throw new ArgumentException(string.Format("Expected a positive number. Recieved {0}", i_AirToAdd));
+            }
+
             m_CurrentAirPressure += i_AirToAdd;
         }
-
     }
 }

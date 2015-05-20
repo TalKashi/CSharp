@@ -33,12 +33,55 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public Engine Engine
+        {
+            get
+            {
+                return m_Engine;
+            }
+        }
+
+        public static bool operator ==(Vehicle i_VehicleA, Vehicle i_VehicleB)
+        {
+            bool isEquals;
+
+            // If both are null, or both are same instance, return true.
+            if (ReferenceEquals(i_VehicleA, i_VehicleB))
+            {
+                isEquals = true;
+            }
+            else if (i_VehicleA == null || i_VehicleB == null)
+            {
+                // If one is null, but not both, return false.
+                isEquals = false;
+            }
+            else
+            {
+                isEquals = i_VehicleA.Equals(i_VehicleB);
+            }
+
+            return isEquals;
+        }
+
+        public static bool operator !=(Vehicle i_VehicleA, Vehicle i_VehicleB)
+        {
+            return !(i_VehicleA == i_VehicleB);
+        }
+
         protected Vehicle(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, Engine i_Engine )
         {
             r_LicenseNumber = i_LicenseNumber;
             m_VehicleModel = i_VehicleModel;
             m_WheelsList = i_WheelsList;
             m_Engine = i_Engine;
+        }
+
+        public void PumpAirInWheelsToMax()
+        {
+            foreach (Wheel wheel in m_WheelsList)
+            {
+                wheel.PumpAir(wheel.MaxAirPressure - wheel.CurrentAirPressure);
+            }
         }
 
         public override bool Equals(object i_Object)
@@ -61,34 +104,15 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            // TODO: Impelement something
-            return base.ToString();
-        }
-
-        public static bool operator ==(Vehicle i_VehicleA, Vehicle i_VehicleB)
-        {
-            bool isEquals;
-
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(i_VehicleA, i_VehicleB))
-            {
-                isEquals = true;
-            }
-            else if (i_VehicleA == null || i_VehicleB == null) // If one is null, but not both, return false.
-            {
-                isEquals = false;
-            }
-            else
-            {
-                isEquals = i_VehicleA.Equals(i_VehicleB);
-            }
-
-            return isEquals;
-        }
-
-        public static bool operator !=(Vehicle i_VehicleA, Vehicle i_VehicleB)
-        {
-            return !(i_VehicleA == i_VehicleB);
+            return string.Format(
+@"License Number: {0}
+Model Name: {1}
+{2}
+{3}", 
+    r_LicenseNumber, 
+    m_VehicleModel, 
+    MyUtils.ListToString(m_WheelsList), 
+    m_Engine);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return m_Engine.EngineVolume;
+                return m_Engine.EngineVolume.GetValueOrDefault();
             }
         }
 
@@ -30,8 +30,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Motorcycle(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, Engine i_Engine,
-            eLicenseType i_LicenseType)
+        public Motorcycle(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, Engine i_Engine, eLicenseType i_LicenseType)
             : base(i_LicenseNumber, i_VehicleModel, i_WheelsList, i_Engine)
         {
             m_LicenseType = i_LicenseType;

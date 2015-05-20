@@ -1,14 +1,14 @@
 ﻿namespace Ex03.GarageLogic
 {
+    public enum eStatus
+    {
+        InProgress,
+        Repaired,
+        Paid
+    }
+
     internal class VehicleCard
     {
-        public enum eStatus
-        {
-            InProgress,
-            Repaired,
-            Paid
-        }
-
         private string m_OwnerName;
         private string m_OwnerPhone;
         private Vehicle m_Vehicle;
@@ -41,6 +41,14 @@
             {
                 return m_Vehicle;
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format(
+@"{0}
+Owner Name: {1}
+Status: {2}", m_Vehicle, m_OwnerName, m_VehicleStatus);
         }
     }
 }

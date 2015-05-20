@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
-    class VehicleInfo
+    internal class VehicleInfo
     {
         private float m_FuelEngineMotorcycleMaxPressure;
         private float m_FuelEngineMotorcycleMaxTank;
@@ -23,7 +19,5 @@ namespace Ex03.GarageLogic
         private float m_FuelEngineTruckMaxPressure;
         private float m_FuelEngineTruckMaxTank;
         private eFuelType m_FuelTypeTruck;
-
-        
     }
 }
