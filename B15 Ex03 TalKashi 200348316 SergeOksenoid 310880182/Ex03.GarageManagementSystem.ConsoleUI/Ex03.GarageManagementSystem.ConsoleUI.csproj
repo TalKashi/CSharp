@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{97285BB8-39D5-4D97-A114-DD6345A3E003}</ProjectGuid>
+    <ProjectGuid>{735A3294-C6E1-43FD-8B28-1A63F0991E8D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ex03.GarageManagementSystem.ConsoleUI</RootNamespace>

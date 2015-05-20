@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{145CB035-0CE7-4B2D-BB69-C4DBE18C71BC}</ProjectGuid>
+    <ProjectGuid>{93325A5B-5B97-40D0-A33C-B5107B4A2704}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ex03.GarageLogic</RootNamespace>
@@ -35,16 +35,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="ElectricCar.cs" />
-    <Compile Include="ElectricMotorcycle.cs" />
-    <Compile Include="ElectricVehicle.cs" />
-    <Compile Include="FuelCar.cs" />
-    <Compile Include="FuelMotorcycle.cs" />
-    <Compile Include="FuelVehicle.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="MyUtils.cs" />
+    <Compile Include="VehicleCard.cs" />
+    <Compile Include="ElectricEngine.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="FuelEngine.cs" />
+    <Compile Include="Garage.cs" />
+    <Compile Include="Motorcycle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Truck.cs" />
+    <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
+    <Compile Include="VehicleInfo.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
