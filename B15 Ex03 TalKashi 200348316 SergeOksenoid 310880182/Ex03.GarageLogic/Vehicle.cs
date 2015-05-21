@@ -132,7 +132,11 @@ Model Name: {1}
 @"Wheel #{0}
 ----------------
 {1}
-{2}", wheelNumber, wheel, System.Environment.NewLine);
+{2}", 
+    wheelNumber, 
+    wheel, 
+    System.Environment.NewLine);
+
                 wheelNumber++;
             }
 

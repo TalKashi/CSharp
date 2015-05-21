@@ -53,7 +53,11 @@ Vehicle Details
 ----------------
 {2}
 
-Status: {3}", m_OwnerName, m_OwnerPhone, m_Vehicle, m_VehicleStatus);
+Status: {3}", 
+            m_OwnerName, 
+            m_OwnerPhone, 
+            m_Vehicle, 
+            m_VehicleStatus);
         }
     }
 }
