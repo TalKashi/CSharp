@@ -42,6 +42,14 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public List<Wheel> Wheels
+        {
+            get
+            {
+                return m_WheelsList;
+            }
+        } 
+
         public static bool operator ==(Vehicle i_VehicleA, Vehicle i_VehicleB)
         {
             bool isEquals;
@@ -75,14 +83,6 @@ namespace Ex03.GarageLogic
             m_VehicleModel = i_VehicleModel;
             m_WheelsList = i_WheelsList;
             m_Engine = i_Engine;
-        }
-
-        public void PumpAirInWheelsToMax()
-        {
-            foreach (Wheel wheel in m_WheelsList)
-            {
-                wheel.PumpAir(wheel.MaxAirPressure - wheel.CurrentAirPressure);
-            }
         }
 
         public override bool Equals(object i_Object)

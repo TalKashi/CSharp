@@ -47,7 +47,12 @@ namespace Ex03.GarageLogic
 
         public void PumpAirInWheels(string i_LicenceNumber)
         {
-            m_VehicleCards[i_LicenceNumber].Vehicle.PumpAirInWheelsToMax();
+            List<Wheel> wheels = m_VehicleCards[i_LicenceNumber].Vehicle.Wheels;
+
+            foreach (Wheel wheel in wheels)
+            {
+                wheel.PumpAir(wheel.MaxAirPressure - wheel.CurrentAirPressure);
+            }
         }
 
         public void PumpFuel(string i_LicenceNumber, eFuelType i_FuelType, float i_AmountToAdd)
