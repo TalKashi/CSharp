@@ -14,5 +14,16 @@ namespace Ex03.GarageLogic
             m_CurrentCarryingWeight = i_CurrentCarryingWeight;
         }
 
+        public override string ToString()
+        {
+            return string.Format(
+@"{0}
+
+Is Carrying Dangerous Materials: {1}
+Current Carrying Weight: {2}",
+                base.ToString(),
+                m_IsCarryingDangerousMaterials,
+                m_CurrentCarryingWeight);
+        }
     }
 }

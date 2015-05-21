@@ -14,13 +14,13 @@ namespace Ex03.GarageLogic
     {
         private eFuelType m_FuelType;
 
-        public float MaxFuel
-        {
-            get
-            {
-                return r_MaxEnergy;
-            }
-        }
+        //public float MaxFuel
+        //{
+        //    get
+        //    {
+        //        return r_MaxEnergy;
+        //    }
+        //}
 
         public FuelEngine(float i_MaxEnergy, float i_EnergyLeft, int i_EngineVolume, eFuelType i_FuelType)
             : base(i_MaxEnergy, i_EnergyLeft, i_EngineVolume)
@@ -46,6 +46,24 @@ namespace Ex03.GarageLogic
             }
 
             m_EnergyLeft += i_LitresToAdd;
+        }
+
+        public override string EngineType()
+        {
+            return "Fuel";
+        }
+
+        public override string ToString()
+        {
+            return string.Format(
+@"{0}
+Fuel Type: {1}
+Litres Left: {2}
+Max Litres: {3}",
+                base.ToString(),
+                m_FuelType,
+                EnergyLeft,
+                MaxEnergy);
         }
     }
 }

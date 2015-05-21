@@ -29,5 +29,17 @@ namespace Ex03.GarageLogic
             m_CarColor = i_Color;
             m_NumOfDoors = i_NumOfDoors;
         }
+
+        public override string ToString()
+        {
+            return string.Format(
+@"{0}
+
+Color: {1}
+Number of Doors: {2}",
+                base.ToString(),
+                m_CarColor,
+                m_NumOfDoors);
+        }
     }
 }

@@ -46,9 +46,14 @@
         public override string ToString()
         {
             return string.Format(
-@"{0}
-Owner Name: {1}
-Status: {2}", m_Vehicle, m_OwnerName, m_VehicleStatus);
+@"Owner Name: {0}
+Owner Phone Nuber: {1}
+
+Vehicle Details
+----------------
+{2}
+
+Status: {3}", m_OwnerName, m_OwnerPhone, m_Vehicle, m_VehicleStatus);
         }
     }
 }

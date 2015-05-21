@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -107,12 +108,35 @@ namespace Ex03.GarageLogic
             return string.Format(
 @"License Number: {0}
 Model Name: {1}
+
 {2}
-{3}", 
+
+{3}
+----------------
+{4}", 
     r_LicenseNumber, 
-    m_VehicleModel, 
-    MyUtils.ListToString(m_WheelsList), 
+    m_VehicleModel,
+    generateWheelsInfoString(), 
+    m_Engine.EngineType(),
     m_Engine);
+        }
+
+        private string generateWheelsInfoString()
+        {
+            int wheelNumber = 1;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (Wheel wheel in m_WheelsList)
+            {
+                stringBuilder.AppendFormat(
+@"Wheel #{0}
+----------------
+{1}
+{2}", wheelNumber, wheel, System.Environment.NewLine);
+                wheelNumber++;
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

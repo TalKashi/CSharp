@@ -44,5 +44,12 @@
             r_MaxEnergy = i_MaxEnergy;
             m_EngineVolume = i_EngineVolume;
         }
+
+        public override string ToString()
+        {
+            return string.Format("Percentage Left: {0}", EnergyLeftInPercentage);
+        }
+
+        public abstract string EngineType();
     }
 }

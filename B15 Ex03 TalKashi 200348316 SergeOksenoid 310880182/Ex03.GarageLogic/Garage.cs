@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
 
             foreach (VehicleCard vehicleCard in m_VehicleCards.Values)
             {
-                stringBuilder.AppendLine(vehicleCard.LicenseNumber);
+                stringBuilder.AppendLine(vehicleCard.Vehicle.LicenseNumber);
             }
 
             return stringBuilder.ToString();

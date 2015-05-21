@@ -24,5 +24,21 @@ namespace Ex03.GarageLogic
 
             m_EnergyLeft += i_HoursToAdd;
         }
+
+        public override string EngineType()
+        {
+            return "Electric";
+        }
+
+        public override string ToString()
+        {
+            return string.Format(
+@"{0}
+Hours Left In Battery: {1}
+Max Hours In Battery: {2}",
+                base.ToString(),
+                EnergyLeft,
+                MaxEnergy);
+        }
     }
 }
