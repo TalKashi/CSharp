@@ -13,6 +13,11 @@ namespace Ex03.GarageLogic
             // TODO: Research
         }
 
+        public bool DoesVehicleExist(string i_LicenceNumber)
+        {
+            return m_VehicleCards.ContainsKey(i_LicenceNumber);
+        }
+
         public string GetLicenseNumbers()
         {
             StringBuilder stringBuilder = new StringBuilder();
