@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Ex03.GarageLogic
@@ -62,26 +63,48 @@ namespace Ex03.GarageLogic
 
         public void PumpFuel(string i_LicenceNumber, eFuelType i_FuelType, float i_AmountToAdd)
         {
-            if (!(m_VehicleCards[i_LicenceNumber].Vehicle.Engine is FuelEngine))
+            Type vehicleType = m_VehicleCards[i_LicenceNumber].Vehicle.GetType();
+            MethodInfo pumpFuelMethod = null;
+
+            foreach (MethodInfo method in vehicleType.GetMethods())
             {
-                // TODO: Throw some excpetion???
+                if (method.Name == "PumpFuel")
+                {
+                    pumpFuelMethod = method;
+                    break;
+                }
             }
 
-            FuelEngine fuelEngine = (FuelEngine) m_VehicleCards[i_LicenceNumber].Vehicle.Engine;
-            fuelEngine.PumpFuel(i_AmountToAdd, i_FuelType);
+            if (pumpFuelMethod == null)
+            {
+                throw new ArgumentException(string.Format("The vehicle by {0} licence number does not have a fuel engine", i_LicenceNumber));
+            }
+
+            pumpFuelMethod.Invoke(m_VehicleCards[i_LicenceNumber].Vehicle, new object[] {i_FuelType, i_AmountToAdd});
         }
 
         public void ChargeBettery(string i_LicenceNumber, float i_MinutesToCharge)
         {
             const float k_MinutesInHour = 60;
 
-            if (!(m_VehicleCards[i_LicenceNumber].Vehicle.Engine is ElectricEngine))
+            Type vehicleType = m_VehicleCards[i_LicenceNumber].Vehicle.GetType();
+            MethodInfo chargeBatteryMethod = null;
+
+            foreach (MethodInfo method in vehicleType.GetMethods())
             {
-                // TODO: Throw some excpetion???
+                if (method.Name == "ChargeBattery")
+                {
+                    chargeBatteryMethod = method;
+                    break;
+                }
             }
 
-            ElectricEngine electricEngineEngine = (ElectricEngine)m_VehicleCards[i_LicenceNumber].Vehicle.Engine;
-            electricEngineEngine.ChargeBattery(i_MinutesToCharge / k_MinutesInHour);
+            if (chargeBatteryMethod == null)
+            {
+                throw new ArgumentException(string.Format("The vehicle by {0} licence number does not have an electric engine", i_LicenceNumber));
+            }
+
+            chargeBatteryMethod.Invoke(m_VehicleCards[i_LicenceNumber].Vehicle, new object[] {i_MinutesToCharge / k_MinutesInHour});
         }
 
         public string GetVehicleDetails(string i_LicenceNumber)
