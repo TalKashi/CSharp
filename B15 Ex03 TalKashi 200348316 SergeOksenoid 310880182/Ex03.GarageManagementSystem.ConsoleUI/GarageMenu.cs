@@ -17,7 +17,13 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
         public void AddVehicle() 
         {
             Console.WriteLine("Please enter license number");
-            string licesePlate = Console.ReadLine();
+            string liceseNumber = Console.ReadLine();
+
+            if (m_grage.DoesVehicleExist(liceseNumber)) 
+            {
+                ChangeVehicleStatus(liceseNumber, eStatus.InProgress);
+                return;
+            }
 
             Console.WriteLine("Please enter your name ");
             string ownerName = Console.ReadLine();
@@ -67,19 +73,19 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
         private string getVehicle() 
         {
-            int userChoose;
-            StringBuilder vehicleMenu;
+            int userChoise;
+            StringBuilder vehicleMenu = new StringBuilder();
             //get vehicle list
-            vehicleList = m_grage.GetVehicleList();
+            string[] vehicleList = VehicleInfo.GetVehicleList();
 
-            for (int i = 0 ; i < getVehicleList.lenght ; i++)
+            for (int i = 0; i < vehicleList.Length; i++)
             {
-               vehicleMenu.Append(string.Format("For {0} press {1}",getVehicleList[i],i));
+               vehicleMenu.Append(string.Format("For {0} press {1}", vehicleList[i], i));
                vehicleMenu.Append(Environment.NewLine);
             }
             Console.WriteLine(vehicleMenu.ToString());
             string vehicleType = Console.ReadLine();
-            while(!isValidVehicle(getVehicleList.lenght,vehicleType,userChoise))
+            while (!isValidVehicle(vehicleList.Length, vehicleType, out userChoise))
             {
                 Console.WriteLine("Wrong input, please enter number in range");
                 vehicleType = Console.ReadLine();
@@ -99,11 +105,6 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             return isValid;
         }
 
-        private string[] GetVehicleList() 
-        {
-            string[] vehicleTypes = { "Car(Fuel)", "Car(Electric)", "Motorcycle(Fuel)", "Motorcycle(Electric)", "Truck" };
-            return vehicleTypes;
-        }
 
     }
 }

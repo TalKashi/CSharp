@@ -1,8 +1,8 @@
 ﻿namespace Ex03.GarageLogic
 {
-    internal class VehicleInfo
+    public class VehicleInfo
     {
-        string[] vehicleTypes = { "Car(Fuel)", "Car(Electric)", "Motorcycle(Fuel)", "Motorcycle(Electric)", "Truck" };
+        static string[] s_VehicleTypes = { "Car(Fuel)", "Car(Electric)", "Motorcycle(Fuel)", "Motorcycle(Electric)", "Truck" };
 
         private float m_FuelEngineMotorcycleMaxPressure;
         private float m_FuelEngineMotorcycleMaxTank;
@@ -23,9 +23,9 @@
         private eFuelType m_FuelTypeTruck;
 
 
-        private string[] GetVehicleList()
+        public static string[] GetVehicleList()
         {
-            return vehicleTypes;
+            return s_VehicleTypes;
         }
     }
 }
