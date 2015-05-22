@@ -16,18 +16,16 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
         public void AddVehicle() 
         {
+            Console.WriteLine("Please enter license number");
+            string licesePlate = Console.ReadLine();
+
             Console.WriteLine("Please enter your name ");
             string ownerName = Console.ReadLine();
 
             Console.WriteLine("Please enter your phone");
             string ownerPhone = Console.ReadLine();
 
-            Console.WriteLine("Please enter license plate");
-            string licesePlate = Console.ReadLine();
-
             string vehicle = getVehicle();
-
-            string engine = getEngine();
 
             Console.WriteLine("Please enter wheels manufacture");
             string wheelsManufacture = Console.ReadLine();
@@ -90,22 +88,6 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             return vehicleList[userChoise];
         }
 
-        private string getEngine() 
-        {
-            string engineMessage = string.Format(@"What kind of engine do you have?
-Press 0 for Fuel Engine
-Press 1 for Electric Engine");
-
-            Console.WriteLine(engineMessage.ToString());
-            string engine = Console.ReadLine();
-            while (engine != "0" && engine != "1") 
-            {
-                Console.WriteLine("Wrong input,Please enter 0 for Fuel Engine or 1 for Electric Engine");
-                engine = Console.ReadLine();
-            }
-
-            return (engine == "0" ? "fuelEngine" : "electricEngine");
-        }
 
         private bool isValidVehicle(int i_upperRangeBound, string i_userInput, out int o_userChoise)
         {
@@ -115,6 +97,12 @@ Press 1 for Electric Engine");
                 isValid = (0 <= o_userChoise &&  o_userChoise < i_upperRangeBound);
             }
             return isValid;
+        }
+
+        private string[] GetVehicleList() 
+        {
+            string[] vehicleTypes = { "Car(Fuel)", "Car(Electric)", "Motorcycle(Fuel)", "Motorcycle(Electric)", "Truck" };
+            return vehicleTypes;
         }
 
     }
