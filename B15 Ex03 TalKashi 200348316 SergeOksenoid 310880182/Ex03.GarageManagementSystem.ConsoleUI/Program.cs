@@ -8,11 +8,11 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
     {
         public static void Main()
         {
-            GarageMainMenu m_garageMainMenu = new GarageMainMenu();
-            m_garageMainMenu.PrintWelcomeMessage();
+            GarageMainMenu m_GarageMainMenu = new GarageMainMenu();
+            m_GarageMainMenu.PrintWelcomeMessage();
             while (true)
             {
-                m_garageMainMenu.ShowMainMenu();
+                m_GarageMainMenu.ShowMainMenu();
             }
         }
     }

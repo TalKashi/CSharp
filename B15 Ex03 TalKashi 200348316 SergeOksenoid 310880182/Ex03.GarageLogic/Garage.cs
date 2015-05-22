@@ -9,6 +9,11 @@ namespace Ex03.GarageLogic
     {
         private Dictionary<string, VehicleCard> m_VehicleCards;
 
+        public Garage()
+        {
+            m_VehicleCards = new Dictionary<string, VehicleCard>();
+        }
+
         public void AddNewVehicle(string i_LicenceNumber, Type i_TypeOfVehicle)
         {
             // TODO: Research
