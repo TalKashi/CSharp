@@ -86,7 +86,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
         }
 
 
-        private string getOptionFromMenu(string[] i_Options,string i_GenericMessage)
+        public string getOptionFromMenu(string[] i_Options,string i_GenericMessage)
         {
             int userChoise;
             printGenericMenuFromArray(i_Options, i_GenericMessage);
