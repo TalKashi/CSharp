@@ -2,7 +2,7 @@
 
 namespace Ex03.GarageLogic
 {
-    internal class Motorcycle : Vehicle
+    internal abstract class Motorcycle : Vehicle
     {
         public enum eLicenseType
         {
@@ -30,7 +30,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Motorcycle(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, Engine i_Engine, eLicenseType i_LicenseType)
+        protected Motorcycle(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, eLicenseType i_LicenseType, Engine i_Engine)
             : base(i_LicenseNumber, i_VehicleModel, i_WheelsList, i_Engine)
         {
             m_LicenseType = i_LicenseType;

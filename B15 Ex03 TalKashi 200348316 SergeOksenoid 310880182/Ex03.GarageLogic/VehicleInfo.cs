@@ -2,7 +2,7 @@
 {
     public class VehicleInfo
     {
-        static string[] s_VehicleTypes = { "Car(Fuel)", "Car(Electric)", "Motorcycle(Fuel)", "Motorcycle(Electric)", "Truck" };
+        static string[] s_VehicleTypes = { "Car(Fuel)", "Car(Electric)", "Motorcycle(Fuel)", "Motorcycle(Electric)", "Truck(Fuel)" };
 
         private float m_FuelEngineMotorcycleMaxPressure;
         private float m_FuelEngineMotorcycleMaxTank;

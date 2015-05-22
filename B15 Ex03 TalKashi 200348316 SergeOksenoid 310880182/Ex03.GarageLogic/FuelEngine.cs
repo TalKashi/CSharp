@@ -22,7 +22,7 @@ namespace Ex03.GarageLogic
         //    }
         //}
 
-        public FuelEngine(float i_MaxEnergy, float i_EnergyLeft, int i_EngineVolume, eFuelType i_FuelType)
+        public FuelEngine(float i_MaxEnergy, float i_EnergyLeft, int? i_EngineVolume, eFuelType i_FuelType)
             : base(i_MaxEnergy, i_EnergyLeft, i_EngineVolume)
         {
             m_FuelType = i_FuelType;

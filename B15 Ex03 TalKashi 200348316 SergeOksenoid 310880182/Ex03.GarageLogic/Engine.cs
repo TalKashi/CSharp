@@ -38,7 +38,7 @@
             }
         }
 
-        protected Engine(float i_MaxEnergy, float i_EnergyLeft, int i_EngineVolume)
+        protected Engine(float i_MaxEnergy, float i_EnergyLeft, int? i_EngineVolume)
         {
             m_EnergyLeft = i_EnergyLeft;
             r_MaxEnergy = i_MaxEnergy;

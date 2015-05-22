@@ -4,7 +4,7 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricEngine : Engine
     {
-        public ElectricEngine(float i_MaxEnergy, float i_EnergyLeft, int i_EngineVolume)
+        public ElectricEngine(float i_MaxEnergy, float i_EnergyLeft, int? i_EngineVolume)
             : base(i_MaxEnergy, i_EnergyLeft, i_EngineVolume)
         {
             // Do nothing
