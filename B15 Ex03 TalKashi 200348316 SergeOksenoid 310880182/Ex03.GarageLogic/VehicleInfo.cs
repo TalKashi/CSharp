@@ -2,7 +2,12 @@
 {
     public class VehicleInfo
     {
-        static string[] s_VehicleTypes = { "Car(Fuel)", "Car(Electric)", "Motorcycle(Fuel)", "Motorcycle(Electric)", "Truck(Fuel)" };
+        private const string k_FuelCar = "Car(Fuel)";
+        private const string k_ElectircCar = "Car(Electric)";
+        private const string k_FuelMotorcycle = "Motorcycle(Fuel)";
+        private const string k_ElectricMotorcycle = "Motorcycle(Electric)";
+        private const string k_FuelTruck = "Truck(Fuel)";
+        private static readonly string[] sr_VehicleTypes = { k_FuelCar, k_ElectircCar, k_FuelMotorcycle, k_ElectricMotorcycle, k_FuelTruck };
 
         private float m_FuelEngineMotorcycleMaxPressure;
         private float m_FuelEngineMotorcycleMaxTank;
@@ -25,9 +30,9 @@
 
         public static string[] GetVehicleList()
         {
-            return s_VehicleTypes;
+            return sr_VehicleTypes;
         }
 
-
+        public static Keyva
     }
 }

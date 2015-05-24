@@ -9,16 +9,16 @@
 
     internal class VehicleCard
     {
-        private string m_OwnerName;
-        private string m_OwnerPhone;
+        private readonly string r_OwnerName;
+        private readonly string r_OwnerPhone;
         private Vehicle m_Vehicle;
         private eStatus m_VehicleStatus;
 
         public VehicleCard(string i_OwnerName, string i_OwnerPhone, Vehicle i_Vehicle) 
         {
             m_VehicleStatus = eStatus.InProgress;
-            m_OwnerName = i_OwnerName;
-            m_OwnerPhone = i_OwnerPhone;
+            r_OwnerName = i_OwnerName;
+            r_OwnerPhone = i_OwnerPhone;
             m_Vehicle = i_Vehicle;
         }
 
@@ -54,8 +54,8 @@ Vehicle Details
 {2}
 
 Status: {3}", 
-            m_OwnerName, 
-            m_OwnerPhone, 
+            r_OwnerName, 
+            r_OwnerPhone, 
             m_Vehicle, 
             m_VehicleStatus);
         }

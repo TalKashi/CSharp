@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
             {
                 return m_WheelsList;
             }
-        } 
+        }
 
         public static bool operator ==(Vehicle i_VehicleA, Vehicle i_VehicleB)
         {
@@ -76,6 +76,13 @@ namespace Ex03.GarageLogic
             m_WheelsList = i_WheelsList;
             m_Engine = i_Engine;
         }
+
+        public virtual List<KeyValuePair<string, string>> GetRequiredData()
+        {
+            List<KeyValuePair<string, string>> requiredData = new List<KeyValuePair<string, string>>();
+
+            requiredData.Add(new KeyValuePair<string, string>("Vehicle model", "string"));
+        } 
 
         public override bool Equals(object i_Object)
         {

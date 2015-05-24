@@ -4,8 +4,19 @@ using Ex03.GarageLogic;
 
 namespace Ex03.GarageManagementSystem.ConsoleUI
 {
-    class GarageMainMenu
+    public class GarageMainMenu
     {
+        private enum eOptions
+        {
+            EnterVehicle = 1,
+            DisplayLicensePlates = 2,
+            UpdateVehicleStatus = 3,
+            InflateAir = 4,
+            PumpFuel = 5,
+            ChargeBattery = 6,
+            DisplayVehicleDetails = 7
+        }
+
         private string[] m_MainMenu = {"adding new vehicle to the garage",
                                   "display vehicles by thier status",
                                   "changing vehicle status",
@@ -21,22 +32,176 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
         private string[] m_Doors = { "2 doors", "3 doors", "4 doors", "5 doors" };
         private string[] m_TruckCarryingDangerousCargo = {"Yes","No"};
        
-        private Garage m_Grage;
+        private Garage m_Garage;
         
         public GarageMainMenu()
         {
-            m_Grage = new Garage();
+            m_Garage = new Garage();
         }
 
         public void PrintWelcomeMessage()
         {
-            Console.WriteLine("Welcome To the Garage Menegment System");
+            Console.WriteLine("Welcome To the Garage Management System");
         }
 
         public void ShowMainMenu()
         {
-            string userChoise = getOptionFromMenu(m_MainMenu, "What do you want to do?");
-            executeSelectedOparetion(userChoise);
+            Console.WriteLine(
+@"What do you want to do? (enter the digit of the desired option)
+1. Enter a vehicle into the garage
+2. Display the license plate of vehicles in the garage
+3. Update vehicle status in garage
+4. Inflate air in vehicle wheels to max
+5. Pump fuel in vehicle
+6. Charge battery in vehicle
+7. Display details of a vehicle in the garage");
+
+            eOptions userChoise = getMainMenuChoice();
+            //string userChoise = getOptionFromMenu(m_MainMenu, "What do you want to do?");
+            //executeSelectedOparetion(userChoise);
+
+            switch (userChoise)
+            {
+                case eOptions.EnterVehicle:
+                    showEnterVehicleMenu();
+                    break;
+                case eOptions.DisplayLicensePlates:
+                    showDisplayLicensePlatesMenu();
+                    break;
+                case eOptions.UpdateVehicleStatus:
+                    showUpdateVehicleStatusMenu();
+                    break;
+                case eOptions.InflateAir:
+                    showInflateAirMenu();
+                    break;
+                case eOptions.PumpFuel:
+                    showPumpFuelMenu();
+                    break;
+                case eOptions.ChargeBattery:
+                    showChargeBatteryMenu();
+                    break;
+                case eOptions.DisplayVehicleDetails:
+                    showDisplayVehicleDetailsMenu();
+                    break;
+            }
+        }
+
+        private void showEnterVehicleMenu()
+        {
+            string licensePlateSrting = getLicensePlaterNumberFromUser();
+
+            if (m_Garage.DoesVehicleExist(licensePlateSrting))
+            {
+                m_Garage.ChangeVehicleStatus(licensePlateSrting, eStatus.InProgress);
+                Console.Clear();
+                Console.WriteLine("We already have this vehicle in our database. Status change to 'In Repair'");
+            }
+            else
+            {
+                string ownerName = getOwnerName();
+                string ownerPhone = getOwnerPhone();
+                string vehicleType = getVehicleType();
+            }
+        }
+
+        private string getVehicleType()
+        {
+            int choiceNum;
+
+            Console.Clear();
+            Console.WriteLine("What vehicle you have? (enter the digit of the desired option)");
+            string[] supportedVehicles = VehicleInfo.GetVehicleList();
+            printGenericMenuFromArray(supportedVehicles);
+
+            Console.Write("Enter your choice: ");
+            string input = Console.ReadLine();
+
+            while (!isValidInput(input, 1, supportedVehicles.Length, out choiceNum))
+            {
+                Console.WriteLine("Invalid input! Please enter a digit between 1 to {0}", supportedVehicles.Length);
+                Console.Write("Enter your choice: ");
+                input = Console.ReadLine();
+            }
+
+            return supportedVehicles[choiceNum - 1];
+        }
+
+        private string getOwnerPhone()
+        {
+            Console.Clear();
+            Console.Write("Please enter your phone number: ");
+            string ownerPhone = Console.ReadLine();
+            while (string.IsNullOrEmpty(ownerPhone) || string.IsNullOrEmpty(ownerPhone.Trim()))
+            {
+                Console.WriteLine("Invalid input! Please enter a non empty string");
+                Console.Write("Please enter your phone number: ");
+                ownerPhone = Console.ReadLine();
+            }
+
+            return ownerPhone;
+        }
+
+        private string getOwnerName()
+        {
+            Console.Clear();
+            Console.Write("Please enter your name: ");
+            string ownerName = Console.ReadLine();
+            while (string.IsNullOrEmpty(ownerName) || string.IsNullOrEmpty(ownerName.Trim()))
+            {
+                Console.WriteLine("Invalid input! Please enter a non empty string");
+                Console.Write("Please enter your name: ");
+                ownerName = Console.ReadLine();
+            }
+
+            return ownerName;
+        }
+
+        private string getLicensePlaterNumberFromUser()
+        {
+            Console.Clear();
+            Console.WriteLine("Please enter vehicle license plate number: ");
+            string licensePlateSrting = Console.ReadLine();
+            while (string.IsNullOrEmpty(licensePlateSrting) || string.IsNullOrEmpty(licensePlateSrting.Trim()))
+            {
+                Console.WriteLine("Invalid input! Please enter a non empty string");
+                Console.Write("License Plate Number: ");
+                licensePlateSrting = Console.ReadLine();
+            }
+
+            return licensePlateSrting;
+        }
+
+        private eOptions getMainMenuChoice()
+        {
+            int choiceNum;
+
+            Console.Write("Enter your choice: ");
+            string input = Console.ReadLine();
+            
+            while (!isValidInput(input, 1, 7, out choiceNum))
+            {
+                Console.WriteLine("Invalid input! Please enter a digit between 1 to 7");
+                Console.Write("Enter your choice: ");
+                input = Console.ReadLine();
+            }
+
+            return (eOptions) choiceNum;
+        }
+
+        private bool isValidInput(string i_Input, int i_MinRange, int i_MaxRange, out int o_ChoiceNum)
+        {
+            bool isValid = true;
+
+            if (!int.TryParse(i_Input, out o_ChoiceNum))
+            {
+                isValid = false;
+            }
+            else if (o_ChoiceNum < i_MinRange || o_ChoiceNum > i_MaxRange)
+            {
+                isValid = false;
+            }
+
+            return isValid;
         }
 
         private string getLicenseNumber()
@@ -54,19 +219,19 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             else if (i_Operation == m_MainMenu[1]) 
             {
                 eStatus filter = (eStatus)Enum.Parse(typeof(eStatus), getOptionFromMenu(m_Status, "Please select your filter"));
-                m_Grage.GetLicenseNumbersByStatus(filter);
+                m_Garage.GetLicenseNumbersByStatus(filter);
 
             }
             else if (i_Operation == m_MainMenu[2])
             {
                 string licenseNumber = getLicenseNumber();
                 eStatus status = (eStatus)Enum.Parse(typeof(eStatus), getOptionFromMenu(m_Status, "To what status you want to change"));
-                m_Grage.ChangeVehicleStatus(licenseNumber, status);
+                m_Garage.ChangeVehicleStatus(licenseNumber, status);
             }
             else if (i_Operation == m_MainMenu[3])
             {
                 string licenseNumber = getLicenseNumber();
-                m_Grage.PumpAirInWheels(licenseNumber);
+                m_Garage.PumpAirInWheels(licenseNumber);
             }
             else if (i_Operation == m_MainMenu[4])
             {
@@ -80,7 +245,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                     Console.WriteLine("Wrong input type");
                     amountInput = Console.ReadLine();
                 }
-                m_Grage.PumpFuel(licenseNumber,fuelType,amount);
+                m_Garage.PumpFuel(licenseNumber,fuelType,amount);
             }
             else if (i_Operation == m_MainMenu[5])
             {
@@ -93,12 +258,12 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                     Console.WriteLine("Wrong input type");
                     amountInput = Console.ReadLine();
                 }
-                m_Grage.ChargeBettery(licenseNumber,amount);
+                m_Garage.ChargeBettery(licenseNumber,amount);
             }
             else if (i_Operation == m_MainMenu[6])
             {
                 string licenseNumber = getLicenseNumber();
-                m_Grage.GetVehicleDetails(licenseNumber);
+                m_Garage.GetVehicleDetails(licenseNumber);
 
             }
 
@@ -110,9 +275,9 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             Console.WriteLine("Please enter license number");
             string liceseNumber = Console.ReadLine();
 
-            if (m_Grage.DoesVehicleExist(liceseNumber)) 
+            if (m_Garage.DoesVehicleExist(liceseNumber)) 
             {
-                m_Grage.ChangeVehicleStatus(liceseNumber, eStatus.InProgress);
+                m_Garage.ChangeVehicleStatus(liceseNumber, eStatus.InProgress);
                 return;
             }
 
@@ -139,9 +304,10 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
 
 
-        private string getOptionFromMenu(string[] i_Options,string i_GenericMessage)
+        private string getOptionFromMenu(string[] i_Options, string i_GenericMessage)
         {
             int userChoise;
+
             printGenericMenuFromArray(i_Options, i_GenericMessage);
             string vehicleType = Console.ReadLine();
             while (!isValidVehicle(i_Options.Length, vehicleType, out userChoise))
@@ -164,15 +330,15 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             return isValid;
         }
 
-        private void printGenericMenuFromArray(string[] i_StringArray, string i_GenericMessage) 
+        private void printGenericMenuFromArray(string[] i_StringArray) 
         {
-            StringBuilder stringBuilder = new StringBuilder(i_GenericMessage);
-            stringBuilder.Append(Environment.NewLine);
+            StringBuilder stringBuilder = new StringBuilder();
+            //stringBuilder.Append(Environment.NewLine);
             for (int i = 0; i < i_StringArray.Length; i++)
             {
-                stringBuilder.Append(string.Format("For {0} press {1}", i_StringArray[i], i));
-                stringBuilder.Append(Environment.NewLine);
+                stringBuilder.AppendLine(string.Format("{0}. {1}", i + 1, i_StringArray[i]));
             }
+
             Console.WriteLine(stringBuilder.ToString());
         }
 
