@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Ex03.GarageLogic;
+using System.Collections.Generic;
 
 namespace Ex03.GarageManagementSystem.ConsoleUI
 {
@@ -66,22 +67,22 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                     showEnterVehicleMenu();
                     break;
                 case eOptions.DisplayLicensePlates:
-                    showDisplayLicensePlatesMenu();
+                    //showDisplayLicensePlatesMenu();
                     break;
                 case eOptions.UpdateVehicleStatus:
-                    showUpdateVehicleStatusMenu();
+                    //showUpdateVehicleStatusMenu();
                     break;
                 case eOptions.InflateAir:
-                    showInflateAirMenu();
+                    //showInflateAirMenu();
                     break;
                 case eOptions.PumpFuel:
-                    showPumpFuelMenu();
+                    //showPumpFuelMenu();
                     break;
                 case eOptions.ChargeBattery:
-                    showChargeBatteryMenu();
+                    //showChargeBatteryMenu();
                     break;
                 case eOptions.DisplayVehicleDetails:
-                    showDisplayVehicleDetailsMenu();
+                    //showDisplayVehicleDetailsMenu();
                     break;
             }
         }
@@ -103,11 +104,13 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                 string vehicleType = getVehicleType();
 
                 int i = 0;
-                string[] parameters = new string[requiredDataArray.size()];
-                foreach (string requiredData in requiredDataArray)
+
+                List<string> requiredDataList = VehicleInfo.GetRequiredDataOfSpecificVehicleType(vehicleType);
+                string[] parameters = new string[requiredDataList.Count];
+                foreach (string requiredData in requiredDataList)
                 {
                     Console.WriteLine(requiredData);
-                    parameters[i] = Console.Read();
+                    parameters[i] = Console.ReadLine();
                     i++;
                 }
             }
@@ -317,7 +320,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
         {
             int userChoise;
 
-            printGenericMenuFromArray(i_Options, i_GenericMessage);
+            //printGenericMenuFromArray(i_Options, i_GenericMessage);
             string vehicleType = Console.ReadLine();
             while (!isValidVehicle(i_Options.Length, vehicleType, out userChoise))
             {
