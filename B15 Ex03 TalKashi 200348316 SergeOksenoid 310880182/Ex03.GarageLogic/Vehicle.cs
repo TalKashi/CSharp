@@ -77,11 +77,10 @@ namespace Ex03.GarageLogic
             m_Engine = i_Engine;
         }
 
-        public virtual List<KeyValuePair<string, string>> GetRequiredData()
+        public virtual void GetRequiredData(List<string> i_RequiredData)
         {
-            List<KeyValuePair<string, string>> requiredData = new List<KeyValuePair<string, string>>();
-
-            requiredData.Add(new KeyValuePair<string, string>("Vehicle model", "string"));
+            i_RequiredData.Add("Vehicle model");
+            m_Engine.GetRequiredData(i_RequiredData);
         } 
 
         public override bool Equals(object i_Object)

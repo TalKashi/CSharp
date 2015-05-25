@@ -1,4 +1,6 @@
-﻿namespace Ex03.GarageLogic
+﻿using System.Collections.Generic;
+
+namespace Ex03.GarageLogic
 {
     internal abstract class Engine
     {
@@ -49,6 +51,8 @@
         {
             return string.Format("Percentage Left: {0}", EnergyLeftInPercentage);
         }
+
+        public abstract void GetRequiredData(List<string> i_RequiredData);
 
         public abstract string EngineType();
     }

@@ -15,6 +15,5 @@ namespace Ex03.GarageLogic
         {
             ((ElectricEngine) m_Engine).ChargeBattery(i_HoursToAdd);
         }
-
     }
 }

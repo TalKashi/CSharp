@@ -41,5 +41,12 @@ Number of Doors: {2}",
                 m_CarColor,
                 m_NumOfDoors);
         }
+
+        public override void GetRequiredData(List<string> i_RequiredData)
+        {
+            base.GetRequiredData(i_RequiredData);
+            i_RequiredData.Add("Car color");
+            i_RequiredData.Add("Number of doors");
+        }
     }
 }
