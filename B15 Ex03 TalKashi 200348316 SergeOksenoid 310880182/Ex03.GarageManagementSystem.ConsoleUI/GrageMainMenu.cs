@@ -101,6 +101,15 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                 string ownerName = getOwnerName();
                 string ownerPhone = getOwnerPhone();
                 string vehicleType = getVehicleType();
+
+                int i = 0;
+                string[] parameters = new string[requiredDataArray.size()];
+                foreach (string requiredData in requiredDataArray)
+                {
+                    Console.WriteLine(requiredData);
+                    parameters[i] = Console.Read();
+                    i++;
+                }
             }
         }
 
