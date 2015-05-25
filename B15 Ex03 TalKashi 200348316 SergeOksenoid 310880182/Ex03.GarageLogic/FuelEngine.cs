@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -46,6 +47,12 @@ namespace Ex03.GarageLogic
             }
 
             m_EnergyLeft += i_LitresToAdd;
+        }
+
+        public override void GetRequiredData(List<string> i_RequiredData)
+        {
+            i_RequiredData.Add("Litres left in tank");
+            i_RequiredData.Add("Fuel type of engine");
         }
 
         public override string EngineType()

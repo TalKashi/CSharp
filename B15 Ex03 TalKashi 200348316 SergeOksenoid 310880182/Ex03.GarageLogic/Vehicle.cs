@@ -79,8 +79,9 @@ namespace Ex03.GarageLogic
 
         public virtual void GetRequiredData(List<string> i_RequiredData)
         {
-            i_RequiredData.Add("Vehicle model");
             m_Engine.GetRequiredData(i_RequiredData);
+            i_RequiredData.Add("Vehicle model");
+            m_WheelsList[0].GetRequiredData(i_RequiredData);
         } 
 
         public override bool Equals(object i_Object)

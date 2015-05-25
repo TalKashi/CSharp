@@ -14,6 +14,13 @@ namespace Ex03.GarageLogic
             m_CurrentCarryingWeight = i_CurrentCarryingWeight;
         }
 
+        public override void GetRequiredData(List<string> i_RequiredData)
+        {
+            base.GetRequiredData(i_RequiredData);
+            i_RequiredData.Add("Is carrying dangerous cargo?");
+            i_RequiredData.Add("Current weight");
+        }
+
         public override string ToString()
         {
             return string.Format(

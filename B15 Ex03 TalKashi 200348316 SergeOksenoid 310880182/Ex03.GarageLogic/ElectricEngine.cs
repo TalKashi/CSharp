@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -23,6 +24,11 @@ namespace Ex03.GarageLogic
             }
 
             m_EnergyLeft += i_HoursToAdd;
+        }
+
+        public override void GetRequiredData(List<string> i_RequiredData)
+        {
+            i_RequiredData.Add("Hours left in battery");
         }
 
         public override string EngineType()

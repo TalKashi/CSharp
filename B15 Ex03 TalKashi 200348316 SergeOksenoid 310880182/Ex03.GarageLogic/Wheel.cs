@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -56,5 +57,11 @@ Max Air Pressure: {2}",
                 m_CurrentAirPressure,
                 m_MaxAirPressure);
         }
+
+        public void GetRequiredData(List<string> i_RequiredData)
+        {
+            i_RequiredData.Add("Wheel manufacturer");
+            i_RequiredData.Add("Current air pressure");
+        } 
     }
 }
