@@ -3,25 +3,17 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    public enum eFuelType
-    {
-        Soler,
-        Octan95,
-        Octan96,
-        Octan98
-    }
-
     internal class FuelEngine : Engine
     {
-        private eFuelType m_FuelType;
+        public enum eFuelType
+        {
+            Soler = 1,
+            Octan95 = 2,
+            Octan96 = 3,
+            Octan98 = 4
+        }
 
-        //public float MaxFuel
-        //{
-        //    get
-        //    {
-        //        return r_MaxEnergy;
-        //    }
-        //}
+        private eFuelType m_FuelType;
 
         public FuelEngine(float i_MaxEnergy, float i_EnergyLeft, int? i_EngineVolume, eFuelType i_FuelType)
             : base(i_MaxEnergy, i_EnergyLeft, i_EngineVolume)
@@ -33,7 +25,7 @@ namespace Ex03.GarageLogic
         {
             if (m_EnergyLeft + i_LitresToAdd > r_MaxEnergy)
             {
-                throw new ValueOutOfRangeException(r_MaxEnergy, m_EnergyLeft, i_LitresToAdd);
+                throw new ValueOutOfRangeException(r_MaxEnergy);
             }
 
             if (m_FuelType != i_FuelType)
@@ -47,12 +39,6 @@ namespace Ex03.GarageLogic
             }
 
             m_EnergyLeft += i_LitresToAdd;
-        }
-
-        public override void GetRequiredData(List<string> i_RequiredData)
-        {
-            i_RequiredData.Add("Litres left in tank");
-            i_RequiredData.Add("Fuel type of engine");
         }
 
         public override string EngineType()
