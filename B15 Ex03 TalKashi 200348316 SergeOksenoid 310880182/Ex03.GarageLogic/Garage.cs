@@ -69,8 +69,10 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void PumpFuel(string i_LicenceNumber, eFuelType i_FuelType, float i_AmountToAdd)
+        public void PumpFuel(string i_LicenceNumber, string i_FuelType, float i_AmountToAdd)
         {
+            const bool v_IgnoreCase = true;
+
             Type vehicleType = m_VehicleCards[i_LicenceNumber].Vehicle.GetType();
             MethodInfo pumpFuelMethod = null;
 
@@ -88,7 +90,10 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException(string.Format("The vehicle by {0} licence number does not have a fuel engine", i_LicenceNumber));
             }
 
-            pumpFuelMethod.Invoke(m_VehicleCards[i_LicenceNumber].Vehicle, new object[] {i_FuelType, i_AmountToAdd});
+            FuelEngine.eFuelType fuelType =
+                (FuelEngine.eFuelType) Enum.Parse(typeof (FuelEngine.eFuelType), i_FuelType, v_IgnoreCase);
+
+            pumpFuelMethod.Invoke(m_VehicleCards[i_LicenceNumber].Vehicle, new object[] { fuelType, i_AmountToAdd });
         }
 
         public void ChargeBettery(string i_LicenceNumber, float i_MinutesToCharge)

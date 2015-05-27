@@ -90,9 +90,9 @@ namespace Ex03.GarageLogic
         private static FuelTruck initNewFuelTruck(string i_LicensePlateSrting, string i_VehicleModel, float i_EnergyLeft, string i_WheelManufacturer, float i_WheelCurrentAirPressure, string[] i_Parameters)
         {
             const string k_YesString = "Y";
-            const string k_NoString = "Y";
+            const string k_NoString = "N";
             const float k_MaxAirPressureInFuelTruckWheels = 25;
-            const eFuelType k_SupportedMTruckFuelType = eFuelType.Soler;
+            const FuelEngine.eFuelType k_SupportedMTruckFuelType = FuelEngine.eFuelType.Soler;
             const float k_MaxTruckFuelTank = 170;
             const int k_NumberOfWheels = 16;
 
@@ -170,7 +170,7 @@ namespace Ex03.GarageLogic
         {
             const bool v_IgnoreCase = true;
             const float k_MaxAirPressureInFuelMotorcycleWheels = 34;
-            const eFuelType k_SupportedMotorcycleFuelType = eFuelType.Octan98;
+            const FuelEngine.eFuelType k_SupportedMotorcycleFuelType = FuelEngine.eFuelType.Octan98;
             const float k_MaxMotorcycleFuelTank = 8;
 
             if (i_EnergyLeft > k_MaxMotorcycleFuelTank)
@@ -230,7 +230,7 @@ namespace Ex03.GarageLogic
         private static FuelCar initNewFuelCar(string i_LicensePlateSrting, string i_VehicleModel, float i_EnergyLeft, string i_WheelManufacturer, float i_WheelCurrentAirPressure, string[] i_Parameters)
         {
             const bool v_IgnoreCase = true;
-            const eFuelType k_SupportedCarFuelType = eFuelType.Octan96;
+            const FuelEngine.eFuelType k_SupportedCarFuelType = FuelEngine.eFuelType.Octan96;
             const float k_MaxCarFuelTank = 35;
 
             if (i_EnergyLeft > k_MaxCarFuelTank)
