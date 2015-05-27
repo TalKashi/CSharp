@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -14,10 +15,10 @@ namespace Ex03.GarageLogic
 
         public enum eNumOfDoors
         {
-            TwoDoors = 2,
-            ThreeDoors = 3,
-            FourDoors = 4,
-            FiveDoors = 5
+            Two = 2,
+            Three = 3,
+            Four = 4,
+            Five = 5
         }
         
         private eCarColor m_CarColor;
@@ -28,6 +29,11 @@ namespace Ex03.GarageLogic
         {
             m_CarColor = i_Color;
             m_NumOfDoors = i_NumOfDoors;
+        }
+
+        protected Car()
+        {
+            // For dummy object
         }
 
         public override string ToString()
@@ -42,11 +48,14 @@ Number of Doors: {2}",
                 m_NumOfDoors);
         }
 
-        public override void GetRequiredData(List<string> i_RequiredData)
+        public override List<KeyValuePair<string, Type>> GetRequiredData()
         {
-            base.GetRequiredData(i_RequiredData);
-            i_RequiredData.Add("Car color");
-            i_RequiredData.Add("Number of doors");
+            List<KeyValuePair<string, Type>> requiredData = new List<KeyValuePair<string, Type>>(2);
+
+            requiredData.Add(new KeyValuePair<string, Type>("car color", typeof(eCarColor)));
+            requiredData.Add(new KeyValuePair<string, Type>("number of doors", typeof(eNumOfDoors)));
+
+            return requiredData;
         }
     }
 }

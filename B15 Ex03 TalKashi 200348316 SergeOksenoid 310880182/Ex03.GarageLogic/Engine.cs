@@ -52,8 +52,6 @@ namespace Ex03.GarageLogic
             return string.Format("Percentage Left: {0}", EnergyLeftInPercentage);
         }
 
-        public abstract void GetRequiredData(List<string> i_RequiredData);
-
         public abstract string EngineType();
     }
 }

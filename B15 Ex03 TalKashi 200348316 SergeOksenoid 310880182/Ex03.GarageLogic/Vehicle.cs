@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Ex03.GarageLogic
@@ -6,7 +7,7 @@ namespace Ex03.GarageLogic
     internal abstract class Vehicle
     {
         private readonly string r_LicenseNumber;
-        private string m_VehicleModel;
+        private readonly string r_VehicleModel;
         private List<Wheel> m_WheelsList;
         protected Engine m_Engine;
 
@@ -14,7 +15,7 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return m_VehicleModel;
+                return r_VehicleModel;
             }
         }
 
@@ -72,17 +73,17 @@ namespace Ex03.GarageLogic
         protected Vehicle(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, Engine i_Engine)
         {
             r_LicenseNumber = i_LicenseNumber;
-            m_VehicleModel = i_VehicleModel;
+            r_VehicleModel = i_VehicleModel;
             m_WheelsList = i_WheelsList;
             m_Engine = i_Engine;
         }
 
-        public virtual void GetRequiredData(List<string> i_RequiredData)
+        protected Vehicle()
         {
-            m_Engine.GetRequiredData(i_RequiredData);
-            i_RequiredData.Add("Vehicle model");
-            m_WheelsList[0].GetRequiredData(i_RequiredData);
-        } 
+            // For dummy object
+        }
+
+        public abstract List<KeyValuePair<string, Type>> GetRequiredData();
 
         public override bool Equals(object i_Object)
         {
@@ -114,7 +115,7 @@ Model Name: {1}
 ----------------
 {4}", 
     r_LicenseNumber, 
-    m_VehicleModel,
+    r_VehicleModel,
     generateWheelsInfoString(), 
     m_Engine.EngineType(),
     m_Engine);

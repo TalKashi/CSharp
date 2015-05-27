@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -36,11 +37,19 @@ namespace Ex03.GarageLogic
             m_LicenseType = i_LicenseType;
         }
 
-        public override void GetRequiredData(List<string> i_RequiredData)
+        protected Motorcycle()
         {
-            base.GetRequiredData(i_RequiredData);
-            i_RequiredData.Add("License type");
-            i_RequiredData.Add("Engine volume");
+            // For dummy object
+        }
+
+        public override List<KeyValuePair<string, Type>> GetRequiredData()
+        {
+            List<KeyValuePair<string, Type>> requiredData = new List<KeyValuePair<string, Type>>(2);
+
+            requiredData.Add(new KeyValuePair<string, Type>("license type", typeof(eLicenseType)));
+            requiredData.Add(new KeyValuePair<string, Type>("engine volume", typeof(int)));
+
+            return requiredData;
         }
 
         public override string ToString()

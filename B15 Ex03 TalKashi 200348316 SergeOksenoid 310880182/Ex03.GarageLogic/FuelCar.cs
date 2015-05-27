@@ -11,6 +11,11 @@ namespace Ex03.GarageLogic
             // Do nothing
         }
 
+        internal FuelCar()
+        {
+            // For dummy object
+        }
+
         public void PumpFuel(float i_LitresToAdd, eFuelType i_FuelType)
         {
             ((FuelEngine)m_Engine).PumpFuel(i_LitresToAdd, i_FuelType);

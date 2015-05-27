@@ -11,6 +11,11 @@ namespace Ex03.GarageLogic
             // Nothing to do.
         }
 
+        internal ElectricCar()
+        {
+            // For dummy object
+        }
+
         public void ChargeBattery(float i_HoursToAdd)
         {
             ((ElectricEngine) m_Engine).ChargeBattery(i_HoursToAdd);

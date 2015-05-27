@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
         {
             if (m_EnergyLeft + i_HoursToAdd > r_MaxEnergy)
             {
-                throw new ValueOutOfRangeException(r_MaxEnergy, m_EnergyLeft, i_HoursToAdd);
+                throw new ValueOutOfRangeException(r_MaxEnergy);
             }
 
             if (i_HoursToAdd < 0)
@@ -24,11 +24,6 @@ namespace Ex03.GarageLogic
             }
 
             m_EnergyLeft += i_HoursToAdd;
-        }
-
-        public override void GetRequiredData(List<string> i_RequiredData)
-        {
-            i_RequiredData.Add("Hours left in battery");
         }
 
         public override string EngineType()

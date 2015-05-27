@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
+using Ex03.GarageLogic;
 
 namespace Ex03.GarageManagementSystem.ConsoleUI
 {
@@ -8,11 +10,10 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
     {
         public static void Main()
         {
-            GarageMainMenu m_GarageMainMenu = new GarageMainMenu();
-            m_GarageMainMenu.PrintWelcomeMessage();
+            GarageMainMenu garageMainMenu = new GarageMainMenu();
             while (true)
             {
-                m_GarageMainMenu.ShowMainMenu();
+                garageMainMenu.ShowMainMenu();
             }
         }
     }

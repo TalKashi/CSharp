@@ -14,9 +14,12 @@ namespace Ex03.GarageLogic
             m_VehicleCards = new Dictionary<string, VehicleCard>();
         }
 
-        public void AddNewVehicle(string i_LicenceNumber, Type i_TypeOfVehicle)
+        public void AddNewVehicle(string i_VehicleType, string i_LicensePlateSrting, string i_VehicleModel, string i_OwnerName, string i_OwnerPhone, float i_EnergyLeft, string i_WheelManufacturer, float i_WheelCurrentAirPressure, string[] i_Parameters)
         {
-            // TODO: Research
+            Vehicle newVehicle = VehicleInfo.CreateVehicle(i_VehicleType, i_LicensePlateSrting, i_VehicleModel,
+                i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
+
+            m_VehicleCards[i_LicensePlateSrting] = new VehicleCard(i_OwnerName, i_OwnerPhone, newVehicle);
         }
 
         public bool DoesVehicleExist(string i_LicenceNumber)

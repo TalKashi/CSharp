@@ -99,21 +99,159 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             }
             else
             {
+                const string k_Fuel = "Fuel";
+                const bool v_IsFuel = true;
+
                 string ownerName = getOwnerName();
                 string ownerPhone = getOwnerPhone();
                 string vehicleType = getVehicleType();
+                string vehicleModel = getVehicleModel();
+                float energyLeft;
+
+                if (vehicleType.Contains(k_Fuel))
+                {
+                    energyLeft = getEnergyLeft(v_IsFuel);
+                }
+                else
+                {
+                    energyLeft = getEnergyLeft(!v_IsFuel);
+                }
+
+                string wheelManufacturer = getWheelManufecturer();
+                float wheelCurrentAirPressure = getWheelCurrentAirPressure();
 
                 int i = 0;
 
-                List<string> requiredDataList = VehicleInfo.GetRequiredDataOfSpecificVehicleType(vehicleType);
+                List<KeyValuePair<string, Type>> requiredDataList = VehicleInfo.GetRequiredDataOfSpecificVehicleType(vehicleType);
                 string[] parameters = new string[requiredDataList.Count];
-                foreach (string requiredData in requiredDataList)
+                foreach (KeyValuePair<string, Type> requiredData in requiredDataList)
                 {
-                    Console.WriteLine(requiredData);
-                    parameters[i] = Console.ReadLine();
+                    Console.Clear();
+                    Console.WriteLine("Please enter {0}", requiredData.Key);
+
+                    if (requiredData.Value.IsEnum)
+                    {
+                        Console.WriteLine("Enter one of the values below:");
+                        string[] enumNames = Enum.GetNames(requiredData.Value);
+
+                        foreach (string name in enumNames)
+                        {
+                            Console.WriteLine("{0}", name);
+                        }
+
+                        Console.WriteLine();
+                    }
+                    else if (requiredData.Value == typeof(bool))
+                    {
+                        Console.Write("Enter 'Y' or 'N': ");
+                        
+                    }
+                    
+                    string input = Console.ReadLine();
+
+                    while (string.IsNullOrEmpty(input) || input.Trim().Length == 0)
+                    {
+                        Console.WriteLine("Please enter a non-empty string. Try again");
+                        input = Console.ReadLine();
+                    }
+
+                    parameters[i] = input;
                     i++;
                 }
+
+                try
+                {
+                    m_Garage.AddNewVehicle(vehicleType, licensePlateSrting, vehicleModel, ownerName, ownerPhone,
+                        energyLeft,
+                        wheelManufacturer, wheelCurrentAirPressure, parameters);
+                    Console.Clear();
+                    Console.WriteLine("We have entered your vehicle into our system.");
+                }
+                catch (ArgumentException i_ArgumentException)
+                {
+                    Console.Clear();
+                    Console.WriteLine("One or more of the given arguments you have entered are not valid. Try again");
+                }
+                catch (ValueOutOfRangeException i_ValueOutOfRangeException)
+                {
+                    Console.Clear();
+                    Console.WriteLine(i_ValueOutOfRangeException.Message);
+                    Console.WriteLine("One or more of the given argument you have entered are our of valid range. Try again");
+                }
+                
+
             }
+            Console.WriteLine("{0}Press Enter to continue", Environment.NewLine);
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        private string getVehicleModel()
+        {
+            Console.Clear();
+            Console.WriteLine("Please enter the vehicle model");
+            string vehicleModel = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(vehicleModel) || vehicleModel.Trim().Length == 0)
+            {
+                Console.WriteLine("Please enter a non-empty string. Try again");
+                vehicleModel = Console.ReadLine();
+            }
+
+            return vehicleModel;
+        }
+
+        private float getWheelCurrentAirPressure()
+        {
+            float currentAirPressure;
+
+            Console.Clear();
+            Console.WriteLine("Please enter the current air pressure in your wheels");
+            string currentAirPressureStr = Console.ReadLine();
+
+            while (!float.TryParse(currentAirPressureStr, out currentAirPressure) && currentAirPressure < 0)
+            {
+                Console.WriteLine("Invalid input!");
+                Console.Write("Please enter a positive value: ");
+                currentAirPressureStr = Console.ReadLine();
+            }
+
+            return currentAirPressure;
+        }
+
+        private string getWheelManufecturer()
+        {
+            Console.Clear();
+            Console.WriteLine("Please enter wheel manufecturer");
+            string wheelManufecturer = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(wheelManufecturer) || wheelManufecturer.Trim().Length == 0)
+            {
+                Console.WriteLine("Please enter a non-empty string. Try again");
+                wheelManufecturer = Console.ReadLine();
+            }
+
+            return wheelManufecturer;
+        }
+
+        private float getEnergyLeft(bool i_IsFuel)
+        {
+            float energyLeft;
+            string msg = string.Format("Please enter {0}",
+                i_IsFuel ? "litres left in fuel tank" : "hours left int battery");
+
+            Console.Clear();
+            Console.WriteLine(msg);
+            string energyLeftStr = Console.ReadLine();
+
+            while (!float.TryParse(energyLeftStr, out energyLeft) && energyLeft < 0)
+            {
+                Console.WriteLine("Invalid input!");
+                Console.Write("Please enter a positive value: ");
+                energyLeftStr = Console.ReadLine();
+            }
+            
+            return energyLeft;
         }
 
         private string getVehicleType()
@@ -171,7 +309,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
         private string getLicensePlaterNumberFromUser()
         {
             Console.Clear();
-            Console.WriteLine("Please enter vehicle license plate number: ");
+            Console.Write("Please enter vehicle license plate number: ");
             string licensePlateSrting = Console.ReadLine();
             while (string.IsNullOrEmpty(licensePlateSrting) || string.IsNullOrEmpty(licensePlateSrting.Trim()))
             {
@@ -186,7 +324,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
         private eOptions getMainMenuChoice()
         {
             int choiceNum;
-
+            Console.WriteLine();
             Console.Write("Enter your choice: ");
             string input = Console.ReadLine();
             

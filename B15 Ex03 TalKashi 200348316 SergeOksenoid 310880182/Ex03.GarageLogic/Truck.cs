@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -14,11 +15,19 @@ namespace Ex03.GarageLogic
             m_CurrentCarryingWeight = i_CurrentCarryingWeight;
         }
 
-        public override void GetRequiredData(List<string> i_RequiredData)
+        protected Truck()
         {
-            base.GetRequiredData(i_RequiredData);
-            i_RequiredData.Add("Is carrying dangerous cargo?");
-            i_RequiredData.Add("Current weight");
+            // For dummy object
+        }
+
+        public override List<KeyValuePair<string, Type>> GetRequiredData()
+        {
+            List<KeyValuePair<string, Type>> requiredData = new List<KeyValuePair<string, Type>>(2);
+
+            requiredData.Add(new KeyValuePair<string, Type>("if carrying dangerous materials", typeof(bool)));
+            requiredData.Add(new KeyValuePair<string, Type>("current cargo weight", typeof(float)));
+
+            return requiredData;
         }
 
         public override string ToString()
