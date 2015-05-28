@@ -7,6 +7,9 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
+        private const string k_PumpFuelMethodName = "PumpFuel";
+        private const string k_ChargeBatteryMethodName = "ChargeBattery";
+
         private Dictionary<string, VehicleCard> m_VehicleCards;
 
         public Garage()
@@ -81,14 +84,12 @@ namespace Ex03.GarageLogic
 
         public void PumpFuel(string i_LicenceNumber, int i_FuelType, float i_AmountToAdd)
         {
-            const bool v_IgnoreCase = true;
-
             Type vehicleType = m_VehicleCards[i_LicenceNumber].Vehicle.GetType();
             MethodInfo pumpFuelMethod = null;
 
             foreach (MethodInfo method in vehicleType.GetMethods())
             {
-                if (method.Name == "PumpFuel")
+                if (method.Name == k_PumpFuelMethodName)
                 {
                     pumpFuelMethod = method;
                     break;
@@ -119,7 +120,7 @@ namespace Ex03.GarageLogic
 
             foreach (MethodInfo method in vehicleType.GetMethods())
             {
-                if (method.Name == "ChargeBattery")
+                if (method.Name == k_ChargeBatteryMethodName)
                 {
                     chargeBatteryMethod = method;
                     break;
