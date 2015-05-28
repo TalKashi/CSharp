@@ -2,9 +2,10 @@
 {
     public enum eStatus
     {
-        InProgress,
-        Repaired,
-        Paid
+        InRepair = 1,
+        Repaired = 2,
+        Paid = 3,
+        None = 4
     }
 
     internal class VehicleCard
@@ -16,7 +17,7 @@
 
         public VehicleCard(string i_OwnerName, string i_OwnerPhone, Vehicle i_Vehicle) 
         {
-            m_VehicleStatus = eStatus.InProgress;
+            m_VehicleStatus = eStatus.InRepair;
             r_OwnerName = i_OwnerName;
             r_OwnerPhone = i_OwnerPhone;
             m_Vehicle = i_Vehicle;

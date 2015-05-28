@@ -29,7 +29,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             "display info"
         };
 
-        private string[] m_Status = {"InProgress", "Repaired", "Paid"};
+        private string[] m_Status = {"InRepair", "Repaired", "Paid"};
         private string[] m_FuelType = {"Octan95", "Octan96", "Octan98", "Soler"};
         private string[] m_MotorcycleLicense = {"A", "A2", "AB", "B1"};
         private string[] m_CarColor = {"Green", "Black", "White", "Red"};
@@ -70,10 +70,10 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                     showEnterVehicleMenu();
                     break;
                 case eOptions.DisplayLicensePlates:
-                    //showDisplayLicensePlatesMenu();
+                    showDisplayLicensePlatesMenu();
                     break;
                 case eOptions.UpdateVehicleStatus:
-                    //showUpdateVehicleStatusMenu();
+                    showUpdateVehicleStatusMenu();
                     break;
                 case eOptions.InflateAir:
                     //showInflateAirMenu();
@@ -88,6 +88,113 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                     //showDisplayVehicleDetailsMenu();
                     break;
             }
+
+            Console.WriteLine("{0}Press Enter to continue", Environment.NewLine);
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        private void showUpdateVehicleStatusMenu()
+        {
+            Console.Clear();
+            string licencePlateStr = getLicensePlaterNumberFromUser();
+
+            if (!m_Garage.DoesVehicleExist(licencePlateStr))
+            {
+                Console.Clear();
+                Console.WriteLine("The given licence plate '{0}' does not exist in out database!", licencePlateStr);
+            }
+            else
+            {
+                const bool v_IgnoreCase = true;
+                eStatus newStatus = eStatus.None;
+
+                Console.Clear();
+                Console.WriteLine(
+@"Please enter the new status of the vehicle:
+1. In Repair
+2. Repaired
+3. Paid");
+
+                Console.WriteLine();
+                Console.Write("New status: ");
+                while (newStatus == eStatus.None)
+                {
+                    string newStatusStr = Console.ReadLine();
+                    if (string.IsNullOrEmpty(newStatusStr))
+                    {
+                        Console.WriteLine("Please enter a non-empty string. Try again");
+                    }
+                    else
+                    {
+                        try
+                        {
+                            newStatus = (eStatus) Enum.Parse(typeof (eStatus), newStatusStr, v_IgnoreCase);
+                            if (newStatus == eStatus.None)
+                            {
+                                Console.WriteLine("Invalid input! Try again");
+                            }
+                        }
+                        catch (ArgumentException)
+                        {
+                            Console.WriteLine("Invalid input! Try again");
+                        }
+                    }
+                }
+
+                m_Garage.ChangeVehicleStatus(licencePlateStr, newStatus);
+                Console.Clear();
+                Console.WriteLine("Vehicle with licence plate '{0}' status has been updated", licencePlateStr);
+            }
+        }
+
+        private void showDisplayLicensePlatesMenu()
+        {
+            Console.Clear();
+            Console.WriteLine(
+@"Please choose how you want to filter the displayed license plates:
+1. In Repair
+2. Repaired
+3. Paid
+4. None");
+            eStatus filterBy = getFilterBy();
+
+            Console.Clear();
+            Console.WriteLine(m_Garage.GetLicenseNumbers(filterBy));
+        }
+
+        private eStatus getFilterBy()
+        {
+            eStatus filterBy = eStatus.None;
+            const bool v_IgnoreCase = true;
+            bool parsedSuccesfully = false;
+
+            Console.WriteLine();
+            Console.Write("Filter by: ");
+
+            while (!parsedSuccesfully)
+            {
+                string filterByStr = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(filterByStr))
+                {
+                    Console.WriteLine("Please enter a non-empty string. Try again");
+                }
+                else
+                {
+                    try
+                    {
+                        filterBy = (eStatus) Enum.Parse(typeof (eStatus), filterByStr, v_IgnoreCase);
+                        parsedSuccesfully = true;
+                    }
+                    catch (ArgumentException)
+                    {
+                        Console.WriteLine("Invalid input! Try again");
+                    }
+                }
+            }
+
+            return filterBy;
         }
 
         private void showEnterVehicleMenu()
@@ -96,7 +203,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
             if (m_Garage.DoesVehicleExist(licensePlateSrting))
             {
-                m_Garage.ChangeVehicleStatus(licensePlateSrting, eStatus.InProgress);
+                m_Garage.ChangeVehicleStatus(licensePlateSrting, eStatus.InRepair);
                 Console.Clear();
                 Console.WriteLine("We already have this vehicle in our database. Status change to 'In Repair'");
             }
@@ -186,12 +293,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                     Console.Clear();
                     Console.WriteLine("One or more of the given arguments you have entered are not valid format. Try again");
                 }
-
-
             }
-            Console.WriteLine("{0}Press Enter to continue", Environment.NewLine);
-            Console.ReadLine();
-            Console.Clear();
         }
 
         private string getVehicleModel()
@@ -441,7 +543,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
         //        if (m_Garage.DoesVehicleExist(liceseNumber)) 
         //        {
-        //            m_Garage.ChangeVehicleStatus(liceseNumber, eStatus.InProgress);
+        //            m_Garage.ChangeVehicleStatus(liceseNumber, eStatus.InRepair);
         //            return;
         //        }
 

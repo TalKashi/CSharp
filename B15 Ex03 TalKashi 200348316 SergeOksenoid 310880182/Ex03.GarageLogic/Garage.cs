@@ -27,19 +27,31 @@ namespace Ex03.GarageLogic
             return m_VehicleCards.ContainsKey(i_LicenceNumber);
         }
 
-        public string GetLicenseNumbers()
+        public string GetLicenseNumbers(eStatus i_FilterByStatus)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            string licencePlates;
 
-            foreach (VehicleCard vehicleCard in m_VehicleCards.Values)
+            if (i_FilterByStatus == eStatus.None)
             {
-                stringBuilder.AppendLine(vehicleCard.Vehicle.LicenseNumber);
+                StringBuilder stringBuilder = new StringBuilder();
+
+                foreach (VehicleCard vehicleCard in m_VehicleCards.Values)
+                {
+                    stringBuilder.AppendLine(vehicleCard.Vehicle.LicenseNumber);
+                }
+
+                licencePlates = stringBuilder.ToString();
+            }
+            else
+            {
+                licencePlates = getLicenseNumbersByStatus(i_FilterByStatus);
             }
 
-            return stringBuilder.ToString();
+
+            return licencePlates;
         }
 
-        public string GetLicenseNumbersByStatus(eStatus i_FilterByStatus)
+        private string getLicenseNumbersByStatus(eStatus i_FilterByStatus)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
