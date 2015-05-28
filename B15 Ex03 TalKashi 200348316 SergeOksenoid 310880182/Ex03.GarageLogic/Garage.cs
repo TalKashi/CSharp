@@ -16,8 +16,7 @@ namespace Ex03.GarageLogic
 
         public void AddNewVehicle(string i_VehicleType, string i_LicensePlateSrting, string i_VehicleModel, string i_OwnerName, string i_OwnerPhone, float i_EnergyLeft, string i_WheelManufacturer, float i_WheelCurrentAirPressure, string[] i_Parameters)
         {
-            Vehicle newVehicle = VehicleInfo.CreateVehicle(i_VehicleType, i_LicensePlateSrting, i_VehicleModel,
-                i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
+            Vehicle newVehicle = VehicleInfo.CreateVehicle(i_VehicleType, i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
 
             m_VehicleCards[i_LicensePlateSrting] = new VehicleCard(i_OwnerName, i_OwnerPhone, newVehicle);
         }
@@ -46,7 +45,6 @@ namespace Ex03.GarageLogic
             {
                 licencePlates = getLicenseNumbersByStatus(i_FilterByStatus);
             }
-
 
             return licencePlates;
         }
@@ -133,7 +131,7 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException(string.Format("The vehicle by {0} licence number does not have an electric engine", i_LicenceNumber));
             }
 
-            chargeBatteryMethod.Invoke(m_VehicleCards[i_LicenceNumber].Vehicle, new object[] {i_MinutesToCharge / k_MinutesInHour});
+            chargeBatteryMethod.Invoke(m_VehicleCards[i_LicenceNumber].Vehicle, new object[] { i_MinutesToCharge / k_MinutesInHour });
         }
 
         public string GetVehicleDetails(string i_LicenceNumber)

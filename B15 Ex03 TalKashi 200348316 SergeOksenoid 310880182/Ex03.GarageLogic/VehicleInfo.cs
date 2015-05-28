@@ -24,7 +24,6 @@ namespace Ex03.GarageLogic
         private static readonly ElectricMotorcycle sr_ElectricMotorcycleDummy = new ElectricMotorcycle();
         private static readonly FuelTruck sr_FuelTruckDummy = new FuelTruck();
         
-
         public static string[] GetVehicleList()
         {
             return sr_VehicleTypes;
@@ -63,24 +62,19 @@ namespace Ex03.GarageLogic
             switch (i_VehicleType)
             {
                 case k_FuelCar:
-                    newVehicle = initNewFuelCar(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer,
-                        i_WheelCurrentAirPressure, i_Parameters);
+                    newVehicle = initNewFuelCar(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
                     break;
                 case k_ElectircCar:
-                    newVehicle = initNewElectricCar(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer,
-                        i_WheelCurrentAirPressure, i_Parameters);
+                    newVehicle = initNewElectricCar(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
                     break;
                 case k_FuelMotorcycle:
-                    newVehicle = initNewFuelMotorcycle(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer,
-                        i_WheelCurrentAirPressure, i_Parameters);
+                    newVehicle = initNewFuelMotorcycle(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
                     break;
                 case k_ElectricMotorcycle:
-                    newVehicle = initNewElectricMotorcycle(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer,
-                        i_WheelCurrentAirPressure, i_Parameters);
+                    newVehicle = initNewElectricMotorcycle(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
                     break;
                 case k_FuelTruck:
-                    newVehicle = initNewFuelTruck(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer,
-                        i_WheelCurrentAirPressure, i_Parameters);
+                    newVehicle = initNewFuelTruck(i_LicensePlateSrting, i_VehicleModel, i_EnergyLeft, i_WheelManufacturer, i_WheelCurrentAirPressure, i_Parameters);
                     break;
             }
 
@@ -192,8 +186,7 @@ namespace Ex03.GarageLogic
                 wheels.Add(new Wheel(i_WheelManufacturer, i_WheelCurrentAirPressure, k_MaxAirPressureInFuelMotorcycleWheels));
             }
 
-            Motorcycle.eLicenseType licenseType =
-                (Motorcycle.eLicenseType) Enum.Parse(typeof (Motorcycle.eLicenseType), i_Parameters[0], v_IgnoreCase);
+            Motorcycle.eLicenseType licenseType = (Motorcycle.eLicenseType) Enum.Parse(typeof(Motorcycle.eLicenseType), i_Parameters[0], v_IgnoreCase);
 
             return new FuelMotorcycle(i_LicensePlateSrting, i_VehicleModel, wheels, licenseType, engine);
         }
