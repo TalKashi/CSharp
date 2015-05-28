@@ -76,22 +76,164 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                     showUpdateVehicleStatusMenu();
                     break;
                 case eOptions.InflateAir:
-                    //showInflateAirMenu();
+                    showInflateAirMenu();
                     break;
                 case eOptions.PumpFuel:
-                    //showPumpFuelMenu();
+                    showPumpFuelMenu();
                     break;
                 case eOptions.ChargeBattery:
-                    //showChargeBatteryMenu();
+                    showChargeBatteryMenu();
                     break;
                 case eOptions.DisplayVehicleDetails:
-                    //showDisplayVehicleDetailsMenu();
+                    showDisplayVehicleDetailsMenu();
                     break;
             }
 
             Console.WriteLine("{0}Press Enter to continue", Environment.NewLine);
             Console.ReadLine();
             Console.Clear();
+        }
+
+        private void showDisplayVehicleDetailsMenu()
+        {
+            Console.Clear();
+            string licencePlateStr = getLicensePlaterNumberFromUser();
+
+            if (!m_Garage.DoesVehicleExist(licencePlateStr))
+            {
+                Console.Clear();
+                Console.WriteLine("The given licence plate '{0}' does not exist in out database!", licencePlateStr);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine(m_Garage.GetVehicleDetails(licencePlateStr));
+            }
+        }
+
+        private void showChargeBatteryMenu()
+        {
+            Console.Clear();
+            string licencePlateStr = getLicensePlaterNumberFromUser();
+
+            if (!m_Garage.DoesVehicleExist(licencePlateStr))
+            {
+                Console.Clear();
+                Console.WriteLine("The given licence plate '{0}' does not exist in out database!", licencePlateStr);
+            }
+            else
+            {
+                const bool v_IsFuel = true;
+                float minutesToCharge = getEnergyToFill(!v_IsFuel);
+
+                Console.Clear();
+                try
+                {
+                    m_Garage.ChargeBettery(licencePlateStr, minutesToCharge);
+                    Console.WriteLine("Vehicle with licence plate '{0}' battery has been charged", licencePlateStr);
+                }
+                catch (ValueOutOfRangeException)
+                {
+                    Console.WriteLine("The amount of minutes you have given has exceeded the capacity of the battery");
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("One or more of the arguments you have entered are invalid");
+                }
+            }
+        }
+
+        private void showPumpFuelMenu()
+        {
+            Console.Clear();
+            string licencePlateStr = getLicensePlaterNumberFromUser();
+
+            if (!m_Garage.DoesVehicleExist(licencePlateStr))
+            {
+                Console.Clear();
+                Console.WriteLine("The given licence plate '{0}' does not exist in out database!", licencePlateStr);
+            }
+            else
+            {
+                const bool v_IsFuel = true;
+                int fuelType = getFuelType();
+                float litresToFill = getEnergyToFill(v_IsFuel);
+
+                Console.Clear();
+                try
+                {
+                    m_Garage.PumpFuel(licencePlateStr, fuelType, litresToFill);
+                    Console.WriteLine("Vehicle with licence plate '{0}' fuel tank has been filled", licencePlateStr);
+                }
+                catch (ValueOutOfRangeException)
+                {
+                    Console.WriteLine("The amount of litres you have given has exceeded the capacity of the fuel tank");
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("One or more of the arguments you have entered are invalid");
+                }
+            }
+        }
+
+        private float getEnergyToFill(bool i_IsFuel)
+        {
+            float energyToFill;
+            string msg = i_IsFuel ? "Litres to fill: " : "Minutes to charge: ";
+
+            Console.Clear();
+            Console.Write(msg);
+
+            string litresToFillStr = Console.ReadLine();
+            while (!isValidInput(litresToFillStr, 0, float.MaxValue, out energyToFill))
+            {
+                Console.WriteLine("Invalid input! Try again");
+                litresToFillStr = Console.ReadLine();
+            }
+
+            return energyToFill;
+        }
+
+        private int getFuelType()
+        {
+            int fuelType;
+
+            Console.Clear();
+            Console.WriteLine(
+@"Please enter fuel type: (enter the digit of the fuel type)
+1. Soler
+2. Octan95
+3. Octan96
+4. Octan98");
+
+            Console.WriteLine();
+            Console.Write("Fuel Type: ");
+            string fuelTypeStr = Console.ReadLine();
+            while (!isValidInput(fuelTypeStr, 1, 4, out fuelType))
+            {
+                Console.WriteLine("Invalid input! Try again");
+                fuelTypeStr = Console.ReadLine();
+            }
+
+            return fuelType;
+        }
+
+        private void showInflateAirMenu()
+        {
+            Console.Clear();
+            string licencePlateStr = getLicensePlaterNumberFromUser();
+
+            if (!m_Garage.DoesVehicleExist(licencePlateStr))
+            {
+                Console.Clear();
+                Console.WriteLine("The given licence plate '{0}' does not exist in out database!", licencePlateStr);
+            }
+            else
+            {
+                m_Garage.PumpAirInWheels(licencePlateStr);
+                Console.Clear();
+                Console.WriteLine("Vehicle with licence plate '{0}' wheels has been inflated to max", licencePlateStr);
+            }
         }
 
         private void showUpdateVehicleStatusMenu()
@@ -453,6 +595,22 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             bool isValid = true;
 
             if (!int.TryParse(i_Input, out o_ChoiceNum))
+            {
+                isValid = false;
+            }
+            else if (o_ChoiceNum < i_MinRange || o_ChoiceNum > i_MaxRange)
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private bool isValidInput(string i_Input, float i_MinRange, float i_MaxRange, out float o_ChoiceNum)
+        {
+            bool isValid = true;
+
+            if (!float.TryParse(i_Input, out o_ChoiceNum))
             {
                 isValid = false;
             }

@@ -43,6 +43,14 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public Engine Engine
+        {
+            get
+            {
+                return m_Engine;
+            }
+        }
+
         public static bool operator ==(Vehicle i_VehicleA, Vehicle i_VehicleB)
         {
             bool isEquals;

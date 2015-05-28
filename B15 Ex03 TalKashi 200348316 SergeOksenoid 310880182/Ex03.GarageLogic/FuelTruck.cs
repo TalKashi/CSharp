@@ -4,6 +4,14 @@ namespace Ex03.GarageLogic
 {
     internal class FuelTruck : Truck
     {
+        public FuelEngine.eFuelType FuelType
+        {
+            get
+            {
+                return ((FuelEngine) m_Engine).FuelType;
+            }
+        }
+
         public FuelTruck(string i_LicenseNumber, string i_VehicleModel, List<Wheel> i_WheelsList, FuelEngine i_Engine, bool i_IsCarryingDangerousMaterials, float i_CurrentCarryingWeight)
             : base(i_LicenseNumber, i_VehicleModel, i_WheelsList, i_Engine, i_IsCarryingDangerousMaterials, i_CurrentCarryingWeight)
         {
