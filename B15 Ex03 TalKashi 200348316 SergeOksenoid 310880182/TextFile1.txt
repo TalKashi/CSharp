@@ -1,0 +1,10 @@
+==========================Exercise Checking Report==========================
+Exercise No...........: 3
+First Student Details.: 200348316 - Tal Kashi
+Second Student Details: 310880182 - Serge Oksenoid
+Delivery Date.........: 30 - May - 2015
+Delivered In Delay....: No
+Delay Reason..........: None
+Visual Studio Version.: 2013
+Comments..............: None
+========================End Exercise Checking Report========================

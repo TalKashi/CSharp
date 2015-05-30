@@ -41,7 +41,6 @@
     <Compile Include="FuelCar.cs" />
     <Compile Include="FuelMotorcycle.cs" />
     <Compile Include="FuelTruck.cs" />
-    <Compile Include="MyUtils.cs" />
     <Compile Include="VehicleCard.cs" />
     <Compile Include="ElectricEngine.cs" />
     <Compile Include="Engine.cs" />

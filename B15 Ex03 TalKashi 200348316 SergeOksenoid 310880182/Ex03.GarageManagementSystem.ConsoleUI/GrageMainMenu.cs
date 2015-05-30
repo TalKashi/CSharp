@@ -438,7 +438,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             Console.WriteLine("Please enter the current air pressure in your wheels");
             string currentAirPressureStr = Console.ReadLine();
 
-            while (!float.TryParse(currentAirPressureStr, out currentAirPressure) && currentAirPressure < 0)
+            while (!float.TryParse(currentAirPressureStr, out currentAirPressure) || currentAirPressure < 0)
             {
                 Console.WriteLine("Invalid input!");
                 Console.Write("Please enter a positive value: ");
@@ -472,7 +472,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             Console.WriteLine(msg);
             string energyLeftStr = Console.ReadLine();
 
-            while (!float.TryParse(energyLeftStr, out energyLeft) && energyLeft < 0)
+            while (!float.TryParse(energyLeftStr, out energyLeft) || energyLeft < 0)
             {
                 Console.WriteLine("Invalid input!");
                 Console.Write("Please enter a positive value: ");
