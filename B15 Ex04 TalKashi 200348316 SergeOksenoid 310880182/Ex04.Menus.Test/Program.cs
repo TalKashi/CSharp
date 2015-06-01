@@ -8,6 +8,9 @@ namespace Ex04.Menus.Test
         {
             Interface.InterfaceTest interfaceTest = new Interface.InterfaceTest();
             interfaceTest.StartTest();
+
+            Delegate.DelegateTest delegateTest = new Delegate.DelegateTest();
+            delegateTest.StartTest();
         }
     }
 }

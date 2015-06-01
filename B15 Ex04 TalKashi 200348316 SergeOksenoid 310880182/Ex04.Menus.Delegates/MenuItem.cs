@@ -27,7 +27,7 @@ namespace Ex04.Menus.Delegates
             MenuItemChosen += i_ItemChosen;
         }
 
-        public void ItemChosen()
+        public void OnMenuItemChosen()
         {
             if(MenuItemChosen != null)
             {

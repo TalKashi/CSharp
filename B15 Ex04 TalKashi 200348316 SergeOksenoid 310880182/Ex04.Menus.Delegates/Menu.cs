@@ -51,9 +51,14 @@ namespace Ex04.Menus.Delegates
                 }
                 else
                 {
-                    r_MenuItemsList[selectedItem - 1].ItemChosen();
+                    r_MenuItemsList[selectedItem - 1].OnMenuItemChosen();
                 }
             }
+        }
+
+        public void ShowMenu_MenuItemChosen()
+        {
+            Show();
         }
 
         public void AddMenuItem(MenuItem i_MenuItemToAdd)

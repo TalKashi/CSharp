@@ -32,6 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DelegateTest.cs" />
+    <Compile Include="Delegate\Date.cs" />
+    <Compile Include="Delegate\MyVersion.cs" />
+    <Compile Include="Delegate\Time.cs" />
+    <Compile Include="Delegate\WordCount.cs" />
     <Compile Include="InterfaceTest.cs" />
     <Compile Include="Interface\Date.cs" />
     <Compile Include="Interface\MyVersion.cs" />
