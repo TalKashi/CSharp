@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ex04.Menus.Interfaces
 {
     public class MenuItem : IShowable
     {
-        private readonly List<IShowable> r_MenuItemsList = new List<IShowable>
+        private readonly List<IShowable> r_MenuItemsList = new List<IShowable>();
         private readonly string r_EscapeWord;
-        private string m_Title
+        private string m_Title;
 
         public string Title
         {
@@ -32,8 +33,7 @@ namespace Ex04.Menus.Interfaces
             {
                 Console.Clear();
                 Console.WriteLine(Title);
-            
-                Console.WriteLine("0. {0}", r_EscapeWord);
+                Console.WriteLine();
 
                 int itemNumberInList = 1;
                 foreach(IShowable item in r_MenuItemsList) 
@@ -41,6 +41,8 @@ namespace Ex04.Menus.Interfaces
                     Console.WriteLine("{0}. {1}", itemNumberInList, item.Title);
                     itemNumberInList++;
                 }
+
+                Console.WriteLine("0. {0}", r_EscapeWord);
 
                 int selectedItem = getUserInput();
                 if(selectedItem == 0) 
@@ -67,8 +69,9 @@ namespace Ex04.Menus.Interfaces
         private int getUserInput()
         {
             bool isValidInput = false;
-            int userChoice;
+            int userChoice = 0;
 
+            Console.WriteLine();
             Console.Write("Please choose the desired item by its number: ");
             
             while(!isValidInput)
@@ -81,7 +84,6 @@ namespace Ex04.Menus.Interfaces
                 else 
                 {
                     Console.Write("Invalid input! Try again: ");
-                    userChoiceString = Console.ReadLine();
                 }
             }
 
