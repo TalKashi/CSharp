@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ex04.Menus.Interfaces
+namespace Ex04.Menus.Delegates
 {
-    public class MenuItem : IShowable
+    public class Menu
     {
-        private readonly List<IShowable> r_MenuItemsList;
+        private readonly List<MenuItem> r_MenuItemsList;
         private readonly string r_EscapeWord;
         private string m_Title;
 
@@ -21,9 +21,9 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public MenuItem(string i_Title, string i_EscapeWord)
+        public Menu(string i_Title, string i_EscapeWord)
         {
-            r_MenuItemsList = new List<IShowable>();
+            r_MenuItemsList = new List<MenuItem>();
             m_Title = i_Title;
             r_EscapeWord = i_EscapeWord;
         }
@@ -37,7 +37,7 @@ namespace Ex04.Menus.Interfaces
                 Console.WriteLine();
 
                 int itemNumberInList = 1;
-                foreach(IShowable item in r_MenuItemsList) 
+                foreach(MenuItem item in r_MenuItemsList) 
                 {
                     Console.WriteLine("{0}. {1}", itemNumberInList, item.Title);
                     itemNumberInList++;
@@ -52,17 +52,17 @@ namespace Ex04.Menus.Interfaces
                 }
                 else
                 {
-                    r_MenuItemsList[selectedItem - 1].Show();
+                    r_MenuItemsList[selectedItem - 1].ItemChosen();
                 }
             }
         }
 
-        public void AddMenuItem(IShowable i_MenuItemToAdd)
+        public void AddMenuItem(MenuItem i_MenuItemToAdd)
         {
             r_MenuItemsList.Add(i_MenuItemToAdd);
         }
 
-        public void RemoveMenuItem(IShowable i_MenuItemToRemove)
+        public void RemoveMenuItem(MenuItem i_MenuItemToRemove)
         {
             r_MenuItemsList.Remove(i_MenuItemToRemove);
         }

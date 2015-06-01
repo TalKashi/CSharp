@@ -32,7 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="InterfaceTest.cs" />
+    <Compile Include="Interface\Date.cs" />
+    <Compile Include="Interface\MyVersion.cs" />
+    <Compile Include="Interface\WordCount.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Interface\Time.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
