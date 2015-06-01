@@ -19,7 +19,7 @@ namespace Ex04.Menus.Test.Delegate
             Date dateItem = new Date();
             firstOptionMenu.AddMenuItem(new MenuItem(dateItem.Title, dateItem.ShowDate_MenuItemChosen));
 
-            m_MainMenu.AddMenuItem(new MenuItem(firstOptionMenu.Title, firstOptionMenu.Show));
+            m_MainMenu.AddMenuItem(new MenuItem(firstOptionMenu.Title, firstOptionMenu.ShowMenu_MenuItemChosen));
 
             Menu secondOptionMenu = new Menu("Info", k_BackwardsWord);
 
