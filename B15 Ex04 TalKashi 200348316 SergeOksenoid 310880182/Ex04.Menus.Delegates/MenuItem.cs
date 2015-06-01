@@ -7,7 +7,7 @@ namespace Ex04.Menus.Delegates
     public class MenuItem
     {
         private string m_Title;
-        private event MenuItemDelegate m_MenuItemChosen;
+        private event MenuItemDelegate MenuItemChosen;
 
         public string Title
         {
@@ -24,14 +24,14 @@ namespace Ex04.Menus.Delegates
         public MenuItem(string i_Title, MenuItemDelegate i_ItemChosen)
         {
             m_Title = i_Title;
-            m_MenuItemChosen += i_ItemChosen;
+            MenuItemChosen += i_ItemChosen;
         }
 
         public void ItemChosen()
         {
-            if(m_MenuItemChosen != null)
+            if(MenuItemChosen != null)
             {
-                m_MenuItemChosen.Invoke();
+                MenuItemChosen.Invoke();
             }
         }
     }

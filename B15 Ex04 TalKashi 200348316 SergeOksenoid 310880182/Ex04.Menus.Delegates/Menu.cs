@@ -33,8 +33,7 @@ namespace Ex04.Menus.Delegates
             while(true) 
             {
                 Console.Clear();
-                Console.WriteLine(Title);
-                Console.WriteLine();
+                Console.WriteLine("{0}{1}", Title, Environment.NewLine);
 
                 int itemNumberInList = 1;
                 foreach(MenuItem item in r_MenuItemsList) 
@@ -72,8 +71,7 @@ namespace Ex04.Menus.Delegates
             bool isValidInput = false;
             int userChoice = 0;
 
-            Console.WriteLine();
-            Console.Write("Please choose the desired item by its number: ");
+            Console.Write("{0}Please choose the desired item by its number: ", Environment.NewLine);
             
             while(!isValidInput)
             {
