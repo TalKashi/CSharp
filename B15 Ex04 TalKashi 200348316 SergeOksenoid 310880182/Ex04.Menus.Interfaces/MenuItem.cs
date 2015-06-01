@@ -20,6 +20,12 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
+        public MenuItem(string i_Title, string i_EscapeWord)
+        {
+            m_Title = i_Title;
+            r_EscapeWord = i_EscapeWord;
+        }
+
         public void Show()
         {
             while(true) 
@@ -46,6 +52,16 @@ namespace Ex04.Menus.Interfaces
                     r_MenuItemsList[selectedItem - 1].Show();
                 }
             }
+        }
+
+        public void AddMenuItem(IShowable i_MenuItemToAdd)
+        {
+            r_MenuItemsList.Add(i_MenuItemToAdd);
+        }
+
+        public void RemoveMenuItem(IShowable i_MenuItemToRemove)
+        {
+            r_MenuItemsList.Remove(i_MenuItemToRemove);
         }
 
         private int getUserInput()
