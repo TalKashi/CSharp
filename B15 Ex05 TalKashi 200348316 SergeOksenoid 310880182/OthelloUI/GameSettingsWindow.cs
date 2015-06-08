@@ -8,6 +8,24 @@ namespace EX5.OthelloGame.UI
         private Button m_BoardSizeButton = new Button();
         private Button m_PlayVsComputerButton = new Button();
         private Button m_PlayVsHumanButton = new Button();
+        private int m_SelectedBoardSize = 6;
+        private int m_NumOfPlayers = 1;
+
+        public int NumberOfPlayers
+        {
+            get
+            {
+                return m_NumOfPlayers;
+            }
+        }
+
+        public int BoardSize
+        {
+            get
+            {
+                return m_SelectedBoardSize;
+            }
+        }
 
         public GameSettingsWindow()
         {
@@ -21,7 +39,7 @@ namespace EX5.OthelloGame.UI
             this.MaximizeBox = false;
             this.Text = "Othello - Game Settings";
 
-            m_BoardSizeButton.Text = "Board Size: 6x6 (click to increase)";
+            m_BoardSizeButton.Text = string.Format("Board Size: {0}x{0} (click to change)", m_SelectedBoardSize);
             m_BoardSizeButton.Click += m_BoardSizeButton_Click;
 
             m_PlayVsComputerButton.Text = "Play against the computer";
@@ -64,24 +82,28 @@ namespace EX5.OthelloGame.UI
 
         private void m_PlayVsComputerButton_Click(object sender, System.EventArgs e)
         {
-            // TODO: Set settings as needed
+            m_NumOfPlayers = 1;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void m_PlayVsHumanButton_Click(object sender, System.EventArgs e)
         {
-            // TODO: Set settings as needed
+            m_NumOfPlayers = 2;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void m_BoardSizeButton_Click(object sender, System.EventArgs e)
         {
-            m_BoardSizeButton.Text = "8x8";
+            updateBoardSize();
+            m_BoardSizeButton.Text = string.Format("Board Size: {0}x{0} (click to change)", m_SelectedBoardSize);
         }
 
-        
+        private void updateBoardSize()
+        {
+            m_SelectedBoardSize = m_SelectedBoardSize == 12 ? 6 : m_SelectedBoardSize + 2;
+        }
 
     }
 }
