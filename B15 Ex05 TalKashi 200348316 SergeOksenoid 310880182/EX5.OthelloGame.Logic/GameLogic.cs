@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EX5.OthelloGame.Logic
 {
-    internal class GameLogic
+    internal static class GameLogic
     {
         public static bool IsGameOver(Board i_Board)
         {

@@ -104,6 +104,5 @@ namespace EX5.OthelloGame.UI
         {
             m_SelectedBoardSize = m_SelectedBoardSize == 12 ? 6 : m_SelectedBoardSize + 2;
         }
-
     }
 }
