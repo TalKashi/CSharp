@@ -15,6 +15,7 @@ namespace Ex04.Menus.Delegates
             {
                 return m_Title;
             }
+
             set
             {
                 m_Title = value;

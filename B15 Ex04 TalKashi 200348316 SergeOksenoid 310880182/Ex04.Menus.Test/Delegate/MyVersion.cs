@@ -16,6 +16,7 @@ namespace Ex04.Menus.Test.Delegate
             {
                 return m_Title;
             }
+
             set
             {
                 m_Title = value;

@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace Ex04.Menus.Delegates
+﻿namespace Ex04.Menus.Delegates
 {
     public delegate void MenuItemDelegate();
 
     public class MenuItem
     {
         private string m_Title;
+
         private event MenuItemDelegate MenuItemChosen;
 
         public string Title
@@ -15,6 +14,7 @@ namespace Ex04.Menus.Delegates
             {
                 return m_Title;
             }
+
             set
             {
                 m_Title = value;

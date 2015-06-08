@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ex04.Menus.Test.Delegate
 {
@@ -16,6 +14,7 @@ namespace Ex04.Menus.Test.Delegate
             {
                 return m_Title;
             }
+
             set
             {
                 m_Title = value;

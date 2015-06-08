@@ -1,5 +1,4 @@
 ﻿using System;
-using Ex04.Menus.Delegates;
 
 namespace Ex04.Menus.Test.Delegate
 {
@@ -15,6 +14,7 @@ namespace Ex04.Menus.Test.Delegate
             {
                 return m_Title;
             }
+
             set
             {
                 m_Title = value;

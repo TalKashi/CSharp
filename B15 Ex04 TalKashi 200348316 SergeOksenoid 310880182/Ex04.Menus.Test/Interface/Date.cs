@@ -15,6 +15,7 @@ namespace Ex04.Menus.Test.Interface
             {
                 return m_Title;
             }
+
             set
             {
                 m_Title = value;

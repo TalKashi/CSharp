@@ -11,11 +11,12 @@ namespace Ex04.Menus.Test.Interface
 
         public string Title
         {
-	          get 
-	        {
+            get
+            {
                 return m_Title;
-	        }
-	          set 
+            }
+
+            set 
 	        {
                 m_Title = value;
 	        }
