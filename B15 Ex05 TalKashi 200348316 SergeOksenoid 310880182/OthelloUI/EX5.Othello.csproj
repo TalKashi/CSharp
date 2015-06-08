@@ -7,8 +7,8 @@
     <ProjectGuid>{E632885B-A3AA-4D8A-A151-6C84A55D7096}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EX5.OthelloGame.UI</RootNamespace>
-    <AssemblyName>EX5.OthelloGame.UI</AssemblyName>
+    <RootNamespace>EX5.Othello</RootNamespace>
+    <AssemblyName>EX5.Othello</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,13 +35,17 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BoardWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameSettingsWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Logic\Board.cs" />
+    <Compile Include="Logic\GameLogic.cs" />
+    <Compile Include="Logic\Move.cs" />
+    <Compile Include="OthelloGame.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="UI\BoardWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\GameSettingsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

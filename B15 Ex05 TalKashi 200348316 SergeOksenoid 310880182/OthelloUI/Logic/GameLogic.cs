@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace EX5.OthelloGame.Logic
+namespace EX5.Othello.Logic
 {
     internal static class GameLogic
     {

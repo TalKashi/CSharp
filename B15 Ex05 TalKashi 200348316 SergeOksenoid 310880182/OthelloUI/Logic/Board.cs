@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EX5.OthelloGame.Logic
+﻿namespace EX5.Othello.Logic
 {
+    public enum ePiece : byte
+    {
+        None,
+        Black,
+        White,
+        Playable
+    }
+
+    public delegate void BoardChangedDelegate(int i_X, int i_Y);
+
     internal class Board
     {
-        private ePiece[,] m_GameMatrix;
+        public event BoardChangedDelegate BoardChanged;
+
+        private readonly ePiece[,] r_GameMatrix;
         private int m_WhitePoints;
         private int m_BlackPoints;
 
         public int Size
         {
-            get { return m_GameMatrix.GetLength(0); }
+            get { return r_GameMatrix.GetLength(0); }
         }
 
         public int WhitePoints
@@ -46,7 +54,7 @@ namespace EX5.OthelloGame.Logic
 
         public Board(int i_Size)
         {
-            m_GameMatrix = new ePiece[i_Size, i_Size];
+            r_GameMatrix = new ePiece[i_Size, i_Size];
         }
 
         public Board GetCopy()
@@ -58,7 +66,7 @@ namespace EX5.OthelloGame.Logic
             {
                 for (int y = 0; y < Size; y++)
                 {
-                    copyBoard.m_GameMatrix[x, y] = m_GameMatrix[x, y];
+                    copyBoard.r_GameMatrix[x, y] = r_GameMatrix[x, y];
                 }
             }
 
@@ -70,7 +78,7 @@ namespace EX5.OthelloGame.Logic
             switch (i_Piece)
             {
                 case ePiece.Black:
-                    if (m_GameMatrix[i_X, i_Y] == ePiece.White)
+                    if (r_GameMatrix[i_X, i_Y] == ePiece.White)
                     {
                         m_WhitePoints--;
                     }
@@ -78,7 +86,7 @@ namespace EX5.OthelloGame.Logic
                     m_BlackPoints++;
                     break;
                 case ePiece.White:
-                    if (m_GameMatrix[i_X, i_Y] == ePiece.Black)
+                    if (r_GameMatrix[i_X, i_Y] == ePiece.Black)
                     {
                         m_BlackPoints--;
                     }
@@ -87,12 +95,20 @@ namespace EX5.OthelloGame.Logic
                     break;
             }
 
-            m_GameMatrix[i_X, i_Y] = i_Piece;
+            r_GameMatrix[i_X, i_Y] = i_Piece;
+        }
+
+        public void OnBoardChanged(int i_X, int i_Y)
+        {
+            if (BoardChanged != null)
+            {
+                BoardChanged.Invoke(i_X, i_Y);
+            }
         }
 
         private ePiece getPiece(int i_X, int i_Y)
         {
-            return m_GameMatrix[i_X, i_Y];
+            return r_GameMatrix[i_X, i_Y];
         }
 
         public void InitForNewGame()
@@ -102,7 +118,7 @@ namespace EX5.OthelloGame.Logic
             {
                 for (int y = 0; y < Size; y++)
                 {
-                    m_GameMatrix[x, y] = ePiece.None;
+                    r_GameMatrix[x, y] = ePiece.None;
                 }
             }
 

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EX5.OthelloGame.UI
+﻿namespace EX5.Othello
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
-            new GameSettingsWindow().ShowDialog();
+            new OthelloGame().StartGame();
         }
     }
 }
