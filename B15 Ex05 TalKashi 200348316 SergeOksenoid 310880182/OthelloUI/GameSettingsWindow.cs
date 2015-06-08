@@ -1,15 +1,15 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
 
-namespace EX5.OthelloGame.OthelloUI
+namespace EX5.OthelloGame.UI
 {
-    internal class GameSettings : Form
+    internal class GameSettingsWindow : Form
     {
         private Button m_BoardSizeButton = new Button();
         private Button m_PlayVsComputerButton = new Button();
         private Button m_PlayVsHumanButton = new Button();
 
-        public GameSettings()
+        public GameSettingsWindow()
         {
             initializeComponents();
         }
