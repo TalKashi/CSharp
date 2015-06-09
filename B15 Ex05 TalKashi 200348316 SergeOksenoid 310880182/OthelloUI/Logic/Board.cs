@@ -96,6 +96,7 @@
             }
 
             r_GameMatrix[i_X, i_Y] = i_Piece;
+            OnBoardChanged(i_X,i_Y);
         }
 
         public void OnBoardChanged(int i_X, int i_Y)

@@ -24,6 +24,38 @@ namespace EX5.Othello.UI
             handleBoardChanged(i_X, i_Y);
         }
 
+        public void DrawBoard()
+        {
+            const bool v_IsPlayable = true;
+            for (int x = 0 ; x < m_GameBoard.Size; x++)
+            {
+                for (int y = 0; y < m_GameBoard.Size; y++)
+                {
+                    switch (m_GameBoard[x, y])
+                    {
+                        case ePiece.Black:
+                            m_BoardButtons[x, y].Text = "O";
+                            m_BoardButtons[x, y].BackColor = Color.Black;
+                            m_BoardButtons[x, y].Enabled = !v_IsPlayable;
+                            break;
+                        case ePiece.White:
+                            m_BoardButtons[x, y].Text = "O";
+                            m_BoardButtons[x, y].BackColor = Color.White;
+                            m_BoardButtons[x, y].Enabled = !v_IsPlayable;
+                            break;
+                        case ePiece.None:
+                            m_BoardButtons[x, y].BackColor = DefaultBackColor;
+                            m_BoardButtons[x, y].Enabled = !v_IsPlayable;
+                            break;
+                        case ePiece.Playable:
+                            m_BoardButtons[x, y].BackColor = Color.Green;
+                            m_BoardButtons[x, y].Enabled = v_IsPlayable;
+                            break;
+                    }
+                }
+            }
+        }
+
         private void handleBoardChanged(int i_X, int i_Y)
         {
             const bool v_IsPlayable = true;
