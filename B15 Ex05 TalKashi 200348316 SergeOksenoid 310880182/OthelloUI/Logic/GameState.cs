@@ -73,6 +73,7 @@ namespace EX5.Othello.Logic
                     break;
                 }
             }
+
             cleanBoard();
             GameLogic.ExcecuteMove(m_Board, moveToPlay, m_CurrentPlayer);
             
@@ -80,6 +81,7 @@ namespace EX5.Othello.Logic
 
             if (!k_IsTwoPlayers && m_CurrentPlayer == k_ComputerPlayer)
             {
+                cleanBoard();
                 Move nextMove = GameAI.FindBestMove(m_PossibleMoves, m_CurrentPlayer, m_Board, 6);
                 GameLogic.ExcecuteMove(m_Board, nextMove, m_CurrentPlayer);
                 endOfMoveLogic();
