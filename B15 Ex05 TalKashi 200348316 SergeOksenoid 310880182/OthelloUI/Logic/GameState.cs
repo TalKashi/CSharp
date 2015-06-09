@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EX5.Othello.Logic
 {
+    public delegate void GameIsOverDelegate();
+    public delegate void PlayerTurnChangedDelegate();
+
     public class GameState
     {
 
@@ -12,11 +15,22 @@ namespace EX5.Othello.Logic
         private Board m_Board;
         private bool k_IsTwoPlayers;
 
+        public event GameIsOverDelegate GameIsOver;
+        public event PlayerTurnChangedDelegate PlayerTurnChanged;
+
         public Board GameBoard
         { 
             get
             {
                 return m_Board;
+            }
+        }
+
+        public ePiece CurrentPlayer
+        {
+            get
+            {
+                return m_CurrentPlayer;
             }
         }
 
@@ -43,8 +57,11 @@ namespace EX5.Othello.Logic
             GameLogic.ExcecuteMove(m_Board, moveToPlay, m_CurrentPlayer);
             switchTurn();
             if (GameLogic.IsGameOver(m_Board)) 
-            { 
-                
+            {
+                if (GameIsOver != null)
+                {
+                    GameIsOver.Invoke();
+                }
             }
             else
             {
@@ -79,6 +96,11 @@ namespace EX5.Othello.Logic
             else
             {
                 m_CurrentPlayer = ePiece.White;
+            }
+
+            if (PlayerTurnChanged != null)
+            {
+                PlayerTurnChanged.Invoke();
             }
         }
 

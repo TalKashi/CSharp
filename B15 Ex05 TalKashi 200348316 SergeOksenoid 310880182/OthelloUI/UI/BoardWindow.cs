@@ -19,6 +19,20 @@ namespace EX5.Othello.UI
             initializeButtons();
             this.Size = new Size(m_GameBoard.Size * 50, m_GameBoard.Size * 50 + 20);
             m_GameBoard.BoardChanged += m_GameBoard_BoardChanged;
+            m_GameState.PlayerTurnChanged += m_GameState_PlayerTurnChanged;
+            this.Text = string.Format("Othello - {0}'s Turn", m_GameState.CurrentPlayer);
+            m_GameState.GameIsOver += m_GameState_GameIsOver;
+        }
+
+        private void m_GameState_GameIsOver()
+        {
+            //TODO: Game over window, or message
+            this.Close();
+        }
+
+        private void m_GameState_PlayerTurnChanged()
+        {
+            this.Text = string.Format("Othello - {0}'s Turn", m_GameState.CurrentPlayer);
         }
 
         private void m_GameBoard_BoardChanged(int i_X, int i_Y)
