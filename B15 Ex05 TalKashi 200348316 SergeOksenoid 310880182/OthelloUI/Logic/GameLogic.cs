@@ -64,16 +64,22 @@ namespace EX5.Othello.Logic
 
         public static ePiece GetOppositePiece(ePiece i_Piece)
         {
-            if (i_Piece == ePiece.Black)
+            ePiece oppositePiece;
+
+            switch (i_Piece)
             {
-                return ePiece.White;
-            }
-            else if (i_Piece == ePiece.White)
-            {
-                return ePiece.Black;
+                case ePiece.Black:
+                    oppositePiece = ePiece.White;
+                    break;
+                case ePiece.White:
+                    oppositePiece = ePiece.Black;
+                    break;
+                default:
+                    oppositePiece = ePiece.None;
+                    break;
             }
 
-            return ePiece.None;
+            return oppositePiece;
         }
 
         private static void turnPieces(Board i_Board, int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_CurrentPlayerPiece)
@@ -135,7 +141,7 @@ namespace EX5.Othello.Logic
             return isOpposite;
         }
 
-        private static bool endWithMyPiece(Board i_Board, int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_Piece, ref int o_Value)
+        private static bool endWithMyPiece(Board i_Board, int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_Piece, ref int io_Value)
         {
             bool hasEncounteredMyPiece = false;
             int flippedPieces = 0;
@@ -150,7 +156,7 @@ namespace EX5.Othello.Logic
                 if (i_Board[i_X, i_Y] == i_Piece)
                 {
                     hasEncounteredMyPiece = true;
-                    o_Value += flippedPieces;
+                    io_Value += flippedPieces;
                     break;
                 }
 

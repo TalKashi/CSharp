@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace EX5.Othello.UI
@@ -10,13 +11,13 @@ namespace EX5.Othello.UI
         private readonly Button r_PlayVsHumanButton = new Button();
 
         private int m_SelectedBoardSize = 6;
-        private bool k_IsTwoPlayers;
+        private bool m_IsTwoPlayers;
 
         public bool IsTwoPlayers
         {
             get
             {
-                return k_IsTwoPlayers;
+                return m_IsTwoPlayers;
             }
         }
 
@@ -35,67 +36,67 @@ namespace EX5.Othello.UI
 
         private void initializeComponents() 
         {
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.Text = "Othello - Game Settings";
+            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
+            Text = "Othello - Game Settings";
 
             r_BoardSizeButton.Text = string.Format("Board Size: {0}x{0} (click to change)", m_SelectedBoardSize);
             r_BoardSizeButton.Click += m_BoardSizeButton_Click;
 
             r_PlayVsComputerButton.Text = "Play against the computer";
-            r_PlayVsComputerButton.Location = new Point(0, this.ClientSize.Height - r_PlayVsComputerButton.Height);
+            r_PlayVsComputerButton.Location = new Point(0, ClientSize.Height - r_PlayVsComputerButton.Height);
             r_PlayVsComputerButton.Click += m_PlayVsComputerButton_Click;
 
             r_PlayVsHumanButton.Text = "Play against your friend";
             r_PlayVsHumanButton.Click += m_PlayVsHumanButton_Click;
 
-            this.Size = new Size(500, 200);
+            Size = new Size(500, 200);
 
-            this.Controls.AddRange(new Control[] {r_BoardSizeButton, r_PlayVsComputerButton, r_PlayVsHumanButton});
+            Controls.AddRange(new Control[] { r_BoardSizeButton, r_PlayVsComputerButton, r_PlayVsHumanButton });
         }
 
         private void placeComponentsInWindow()
         {
-            r_BoardSizeButton.Height = this.ClientSize.Height / 2 - 20;
-            r_BoardSizeButton.Width = this.ClientSize.Width - 20;
+            r_BoardSizeButton.Height = (ClientSize.Height / 2) - 20;
+            r_BoardSizeButton.Width = ClientSize.Width - 20;
             r_BoardSizeButton.Left = 10;
             r_BoardSizeButton.Top = 10;
 
             r_PlayVsComputerButton.Height = r_BoardSizeButton.Height;
-            r_PlayVsComputerButton.Width = r_BoardSizeButton.Width / 2 - 10;
-            r_PlayVsComputerButton.Location = new Point(0, this.ClientSize.Height - r_PlayVsComputerButton.Height);
+            r_PlayVsComputerButton.Width = (r_BoardSizeButton.Width / 2) - 10;
+            r_PlayVsComputerButton.Location = new Point(0, ClientSize.Height - r_PlayVsComputerButton.Height);
             r_PlayVsComputerButton.Left += 10;
             r_PlayVsComputerButton.Top -= 10;
 
             r_PlayVsHumanButton.Height = r_PlayVsComputerButton.Height;
             r_PlayVsHumanButton.Width = r_PlayVsComputerButton.Width;
-            r_PlayVsHumanButton.Location = new Point(this.ClientSize.Width - r_PlayVsHumanButton.Width, this.ClientSize.Height - r_PlayVsHumanButton.Height);
+            r_PlayVsHumanButton.Location = new Point(ClientSize.Width - r_PlayVsHumanButton.Width, ClientSize.Height - r_PlayVsHumanButton.Height);
             r_PlayVsHumanButton.Left -= 10;
             r_PlayVsHumanButton.Top -= 10;
         }
 
-        protected override void OnResize(System.EventArgs e)
+        protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
             placeComponentsInWindow();
         }
 
-        private void m_PlayVsComputerButton_Click(object sender, System.EventArgs e)
+        private void m_PlayVsComputerButton_Click(object sender, EventArgs e)
         {
-            k_IsTwoPlayers = false;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            m_IsTwoPlayers = false;
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
-        private void m_PlayVsHumanButton_Click(object sender, System.EventArgs e)
+        private void m_PlayVsHumanButton_Click(object sender, EventArgs e)
         {
-            k_IsTwoPlayers = true;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            m_IsTwoPlayers = true;
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
-        private void m_BoardSizeButton_Click(object sender, System.EventArgs e)
+        private void m_BoardSizeButton_Click(object sender, EventArgs e)
         {
             updateBoardSize();
             r_BoardSizeButton.Text = string.Format("Board Size: {0}x{0} (click to change)", m_SelectedBoardSize);

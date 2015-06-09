@@ -17,7 +17,7 @@ namespace EX5.Othello.UI
             m_GameBoard = i_GameState.GameBoard;
             this.StartPosition = FormStartPosition.CenterScreen;
             initializeButtons();
-            this.Size = new Size(m_GameBoard.Size * 50, m_GameBoard.Size * 50 + 20);
+            this.Size = new Size(m_GameBoard.Size * 50, (m_GameBoard.Size * 50) + 20);
             m_GameBoard.BoardChanged += m_GameBoard_BoardChanged;
             m_GameState.PlayerTurnChanged += m_GameState_PlayerTurnChanged;
             this.Text = string.Format("Othello - {0}'s Turn", m_GameState.CurrentPlayer);
@@ -42,7 +42,6 @@ namespace EX5.Othello.UI
                 messageBody = string.Format("{5} Won!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", m_GameBoard.BlackPoints, m_GameBoard.WhitePoints, m_GameState.BlackTotalWins, m_GameState.WhiteTotalWins, Environment.NewLine, winner);
             }
 
-
             DialogResult dialogResult = MessageBox.Show(messageBody, "Othello", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (dialogResult == DialogResult.Yes)
             {
@@ -63,7 +62,6 @@ namespace EX5.Othello.UI
         {
             handleBoardChanged(i_X, i_Y);
         }
-
 
         private void handleBoardChanged(int i_X, int i_Y)
         {
@@ -110,11 +108,10 @@ namespace EX5.Othello.UI
             }
         }
 
-        void BoardWindow_Click(object sender, EventArgs e)
+        private void BoardWindow_Click(object sender, EventArgs e)
         {
             CellButton buttonClicked = sender as CellButton;
             m_GameState.PlayMove(buttonClicked.X, buttonClicked.Y);
-
         }
 
         private void placeButtonsInWindow()
@@ -122,14 +119,14 @@ namespace EX5.Othello.UI
             const int k_DistanceFromEdge = 10;
             const int k_DistanceFromButton = 5;
 
-            int buttonSize = (this.ClientSize.Width - k_DistanceFromEdge * 2 - k_DistanceFromButton * (m_GameBoard.Size - 1)) / m_GameBoard.Size;
+            int buttonSize = (ClientSize.Width - (k_DistanceFromEdge * 2) - (k_DistanceFromButton * (m_GameBoard.Size - 1))) / m_GameBoard.Size;
 
             for (int x = 0; x < m_BoardButtons.GetLength(0); x++)
             {
                 for (int y = 0; y < m_BoardButtons.GetLength(0); y++)
                 {
                     m_BoardButtons[x, y].Size = new Size(buttonSize, buttonSize);
-                    m_BoardButtons[x, y].Location = new Point(x * buttonSize + k_DistanceFromButton * x + k_DistanceFromEdge, y * buttonSize + k_DistanceFromButton * y + k_DistanceFromEdge);
+                    m_BoardButtons[x, y].Location = new Point((x * buttonSize) + (k_DistanceFromButton * x) + k_DistanceFromEdge, (y * buttonSize) + (k_DistanceFromButton * y) + k_DistanceFromEdge);
                 }
             }
         }

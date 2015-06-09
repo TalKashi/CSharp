@@ -5,10 +5,13 @@ using System.Text;
 namespace EX5.Othello.Logic
 {
     public delegate void GameIsOverDelegate();
+
     public delegate void PlayerTurnChangedDelegate();
 
     public class GameState
     {
+        private const ePiece k_ComputerPlayer = ePiece.Black;
+
         private ePiece m_CurrentPlayer;
         private List<Move> m_PossibleMoves;
         private Board m_Board;
@@ -16,9 +19,8 @@ namespace EX5.Othello.Logic
         private int m_BlackTotalWins;
         private int m_WhiteTotalWins;
 
-        private const ePiece k_ComputerPlayer = ePiece.Black;
-
         public event GameIsOverDelegate GameIsOver;
+
         public event PlayerTurnChangedDelegate PlayerTurnChanged;
 
         public Board GameBoard
@@ -36,7 +38,6 @@ namespace EX5.Othello.Logic
                 return m_CurrentPlayer;
             }
         }
-
 
         public int BlackTotalWins
         { 
@@ -106,8 +107,8 @@ namespace EX5.Othello.Logic
 
         private void setPossibleMoves()
         {
-            
             m_PossibleMoves = GameLogic.GetPossibleMoves(m_Board, m_CurrentPlayer);
+
             if (m_PossibleMoves.Count == 0)
             {
                 switchTurn();
@@ -122,14 +123,7 @@ namespace EX5.Othello.Logic
 
         private void switchTurn()
         {
-            if (m_CurrentPlayer == ePiece.White)
-            {
-                m_CurrentPlayer = ePiece.Black;
-            }
-            else
-            {
-                m_CurrentPlayer = ePiece.White;
-            }
+            m_CurrentPlayer = m_CurrentPlayer == ePiece.White ? ePiece.Black : ePiece.White;
 
             if (PlayerTurnChanged != null)
             {
@@ -143,7 +137,6 @@ namespace EX5.Othello.Logic
             {
                 m_Board[move.X, move.Y] = ePiece.None;
             }
-
         }
 
         public void InitForNewGame()
