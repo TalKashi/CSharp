@@ -7,7 +7,7 @@ namespace EX5.Othello.UI
 {
     internal class BoardWindow : Form
     {
-        private Button[,] m_BoardButtons;
+        private CellButton[,] m_BoardButtons;
         private Board m_GameBoard;
 
         public BoardWindow(Board i_GameBoard)
@@ -85,16 +85,24 @@ namespace EX5.Othello.UI
 
         private void initializeButtons(Board i_GameBoard)
         {
-            m_BoardButtons = new Button[m_GameBoard.Size, m_GameBoard.Size];
+            m_BoardButtons = new CellButton[m_GameBoard.Size, m_GameBoard.Size];
 
             for (int x = 0; x < m_GameBoard.Size; x++)
             {
                 for (int y = 0; y < m_GameBoard.Size; y++)
                 {
-                    m_BoardButtons[x, y] = new Button();
+                    m_BoardButtons[x, y] = new CellButton(x, y);
+                    m_BoardButtons[x, y].Click += BoardWindow_Click;
                     this.Controls.Add(m_BoardButtons[x, y]);
                 }
             }
+        }
+
+        void BoardWindow_Click(object sender, EventArgs e)
+        {
+            CellButton buttonClicked = sender as CellButton;
+            
+
         }
 
         private void placeButtonsInWindow()

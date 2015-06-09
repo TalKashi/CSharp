@@ -46,6 +46,7 @@ namespace EX5.Othello.Logic
                     if (move != null)
                     {
                         possibleMoves.Add(move);
+                        i_Board[x, y] = ePiece.Playable;
                     }
                 }
             }

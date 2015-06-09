@@ -10,12 +10,9 @@ namespace EX5.Othello
         {
             GameSettingsWindow gameSettingsWindow = new GameSettingsWindow();
             gameSettingsWindow.ShowDialog();
-
             Board gameBoard = new Board(gameSettingsWindow.BoardSize);
-           
             BoardWindow boardWindow = new BoardWindow(gameBoard);
             gameBoard.InitForNewGame();
-            //boardWindow.DrawBoard();
             boardWindow.ShowDialog();
         }
     }
