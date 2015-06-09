@@ -9,12 +9,14 @@ namespace EX5.Othello.UI
     {
         private CellButton[,] m_BoardButtons;
         private Board m_GameBoard;
+        private GameState m_GameState;
 
-        public BoardWindow(Board i_GameBoard)
+        public BoardWindow(GameState i_GameState)
         {
-            m_GameBoard = i_GameBoard;
+            m_GameState = i_GameState;
+            m_GameBoard = i_GameState.GameBoard;
             this.StartPosition = FormStartPosition.CenterScreen;
-            initializeButtons(i_GameBoard);
+            initializeButtons();
             this.Size = new Size(m_GameBoard.Size * 50, m_GameBoard.Size * 50 + 20);
             m_GameBoard.BoardChanged += m_GameBoard_BoardChanged;
         }
@@ -24,37 +26,6 @@ namespace EX5.Othello.UI
             handleBoardChanged(i_X, i_Y);
         }
 
-        public void DrawBoard()
-        {
-            const bool v_IsPlayable = true;
-            for (int x = 0 ; x < m_GameBoard.Size; x++)
-            {
-                for (int y = 0; y < m_GameBoard.Size; y++)
-                {
-                    switch (m_GameBoard[x, y])
-                    {
-                        case ePiece.Black:
-                            m_BoardButtons[x, y].Text = "O";
-                            m_BoardButtons[x, y].BackColor = Color.Black;
-                            m_BoardButtons[x, y].Enabled = !v_IsPlayable;
-                            break;
-                        case ePiece.White:
-                            m_BoardButtons[x, y].Text = "O";
-                            m_BoardButtons[x, y].BackColor = Color.White;
-                            m_BoardButtons[x, y].Enabled = !v_IsPlayable;
-                            break;
-                        case ePiece.None:
-                            m_BoardButtons[x, y].BackColor = DefaultBackColor;
-                            m_BoardButtons[x, y].Enabled = !v_IsPlayable;
-                            break;
-                        case ePiece.Playable:
-                            m_BoardButtons[x, y].BackColor = Color.Green;
-                            m_BoardButtons[x, y].Enabled = v_IsPlayable;
-                            break;
-                    }
-                }
-            }
-        }
 
         private void handleBoardChanged(int i_X, int i_Y)
         {
@@ -83,7 +54,7 @@ namespace EX5.Othello.UI
             }
         }
 
-        private void initializeButtons(Board i_GameBoard)
+        private void initializeButtons()
         {
             m_BoardButtons = new CellButton[m_GameBoard.Size, m_GameBoard.Size];
 

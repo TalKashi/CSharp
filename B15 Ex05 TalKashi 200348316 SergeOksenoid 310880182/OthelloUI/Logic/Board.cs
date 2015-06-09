@@ -10,7 +10,7 @@
 
     public delegate void BoardChangedDelegate(int i_X, int i_Y);
 
-    internal class Board
+    public class Board
     {
         public event BoardChangedDelegate BoardChanged;
 

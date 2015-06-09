@@ -10,13 +10,13 @@ namespace EX5.Othello.UI
         private readonly Button r_PlayVsHumanButton = new Button();
 
         private int m_SelectedBoardSize = 6;
-        private int m_NumOfPlayers = 1;
+        private bool k_IsTwoPlayers;
 
-        public int NumberOfPlayers
+        public bool IsTwoPlayers
         {
             get
             {
-                return m_NumOfPlayers;
+                return k_IsTwoPlayers;
             }
         }
 
@@ -83,14 +83,14 @@ namespace EX5.Othello.UI
 
         private void m_PlayVsComputerButton_Click(object sender, System.EventArgs e)
         {
-            m_NumOfPlayers = 1;
+            k_IsTwoPlayers = false;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void m_PlayVsHumanButton_Click(object sender, System.EventArgs e)
         {
-            m_NumOfPlayers = 2;
+            k_IsTwoPlayers = true;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -10,7 +10,22 @@ namespace EX5.Othello.Logic
         private ePiece m_CurrentPlayer;
         private List<Move> m_PossibleMoves;
         private Board m_Board;
+        private bool k_IsTwoPlayers;
 
+        public Board GameBoard
+        { 
+            get
+            {
+                return m_Board;
+            }
+        }
+
+        public GameState(int i_BoardSize, bool i_IsTwoPlayers)
+        {
+            m_Board = new Board(i_BoardSize);
+            k_IsTwoPlayers = i_IsTwoPlayers;
+            m_CurrentPlayer = ePiece.White;
+        }
 
         public void PlayMove(int i_X, int i_Y)
         {
@@ -69,6 +84,12 @@ namespace EX5.Othello.Logic
                 m_Board[move.X, move.Y] = ePiece.None;
             }
 
+        }
+
+        public void InitForNewGame()
+        {
+            m_Board.InitForNewGame();
+            setPossibleMoves();
         }
     }
 }
