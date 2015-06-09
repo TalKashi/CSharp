@@ -56,6 +56,7 @@ namespace EX5.Othello.UI
 
         private void initializeButtons()
         {
+            const bool v_IsEnabled = true;
             m_BoardButtons = new CellButton[m_GameBoard.Size, m_GameBoard.Size];
 
             for (int x = 0; x < m_GameBoard.Size; x++)
@@ -63,6 +64,7 @@ namespace EX5.Othello.UI
                 for (int y = 0; y < m_GameBoard.Size; y++)
                 {
                     m_BoardButtons[x, y] = new CellButton(x, y);
+                    m_BoardButtons[x, y].Enabled = !v_IsEnabled;
                     m_BoardButtons[x, y].Click += BoardWindow_Click;
                     this.Controls.Add(m_BoardButtons[x, y]);
                 }
@@ -72,7 +74,7 @@ namespace EX5.Othello.UI
         void BoardWindow_Click(object sender, EventArgs e)
         {
             CellButton buttonClicked = sender as CellButton;
-            
+            m_GameState.PlayMove(buttonClicked.X, buttonClicked.Y);
 
         }
 

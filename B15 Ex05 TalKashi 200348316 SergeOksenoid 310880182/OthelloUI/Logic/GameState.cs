@@ -63,6 +63,11 @@ namespace EX5.Othello.Logic
                 switchTurn();
                 m_PossibleMoves = GameLogic.GetPossibleMoves(m_Board, m_CurrentPlayer);
             }
+
+            foreach (Move move in m_PossibleMoves)
+            {
+                m_Board[move.X, move.Y] = ePiece.Playable;
+            }
         }
 
         private void switchTurn()
