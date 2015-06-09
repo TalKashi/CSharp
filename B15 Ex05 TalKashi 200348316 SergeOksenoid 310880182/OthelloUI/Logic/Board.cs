@@ -120,6 +120,7 @@
                 for (int y = 0; y < Size; y++)
                 {
                     r_GameMatrix[x, y] = ePiece.None;
+                    OnBoardChanged(x, y);
                 }
             }
 

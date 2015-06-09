@@ -26,8 +26,32 @@ namespace EX5.Othello.UI
 
         private void m_GameState_GameIsOver()
         {
-            //TODO: Game over window, or message
-            this.Close();
+            DisplayGameOverMessage();
+        }
+
+        private void DisplayGameOverMessage()
+        {
+            string messageBody;
+            ePiece winner = m_GameState.GetWinner();
+            if (winner == ePiece.None)
+            {
+                messageBody = string.Format("Draw!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", m_GameBoard.BlackPoints, m_GameBoard.WhitePoints, m_GameState.BlackTotalWins, m_GameState.WhiteTotalWins, Environment.NewLine);
+            }
+            else
+            {
+                messageBody = string.Format("{5} Won!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", m_GameBoard.BlackPoints, m_GameBoard.WhitePoints, m_GameState.BlackTotalWins, m_GameState.WhiteTotalWins, Environment.NewLine, winner);
+            }
+
+
+            DialogResult dialogResult = MessageBox.Show(messageBody, "Othello", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (dialogResult == DialogResult.Yes)
+            {
+                m_GameState.InitForNewGame();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                this.Close();
+            }
         }
 
         private void m_GameState_PlayerTurnChanged()
@@ -58,6 +82,7 @@ namespace EX5.Othello.UI
                     m_BoardButtons[i_X, i_Y].Enabled = !v_IsPlayable;
                     break;
                 case ePiece.None:
+                    m_BoardButtons[i_X, i_Y].Text = string.Empty;
                     m_BoardButtons[i_X, i_Y].BackColor = DefaultBackColor;
                     m_BoardButtons[i_X, i_Y].Enabled = !v_IsPlayable;
                     break;

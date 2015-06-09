@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Logic\Board.cs" />
+    <Compile Include="Logic\GameAI.cs" />
     <Compile Include="Logic\GameLogic.cs" />
     <Compile Include="Logic\GameState.cs" />
     <Compile Include="Logic\Move.cs" />

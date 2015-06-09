@@ -9,11 +9,14 @@ namespace EX5.Othello.Logic
 
     public class GameState
     {
-
         private ePiece m_CurrentPlayer;
         private List<Move> m_PossibleMoves;
         private Board m_Board;
         private bool k_IsTwoPlayers;
+        private int m_BlackTotalWins;
+        private int m_WhiteTotalWins;
+
+        private const ePiece k_ComputerPlayer = ePiece.Black;
 
         public event GameIsOverDelegate GameIsOver;
         public event PlayerTurnChangedDelegate PlayerTurnChanged;
@@ -31,6 +34,23 @@ namespace EX5.Othello.Logic
             get
             {
                 return m_CurrentPlayer;
+            }
+        }
+
+
+        public int BlackTotalWins
+        { 
+            get 
+            { 
+                return m_BlackTotalWins; 
+            } 
+        }
+
+        public int WhiteTotalWins 
+        {
+            get
+            {
+                return m_WhiteTotalWins;
             }
         }
 
@@ -55,8 +75,21 @@ namespace EX5.Othello.Logic
             }
             cleanBoard();
             GameLogic.ExcecuteMove(m_Board, moveToPlay, m_CurrentPlayer);
+            
+            endOfMoveLogic();
+
+            if (!k_IsTwoPlayers && m_CurrentPlayer == k_ComputerPlayer)
+            {
+                Move nextMove = GameAI.FindBestMove(m_PossibleMoves, m_CurrentPlayer, m_Board, 6);
+                GameLogic.ExcecuteMove(m_Board, nextMove, m_CurrentPlayer);
+                endOfMoveLogic();
+            }
+        }
+
+        private void endOfMoveLogic()
+        {
             switchTurn();
-            if (GameLogic.IsGameOver(m_Board)) 
+            if (GameLogic.IsGameOver(m_Board))
             {
                 if (GameIsOver != null)
                 {
@@ -67,9 +100,7 @@ namespace EX5.Othello.Logic
             {
                 setPossibleMoves();
             }
-            
         }
-
 
         private void setPossibleMoves()
         {
@@ -117,6 +148,32 @@ namespace EX5.Othello.Logic
         {
             m_Board.InitForNewGame();
             setPossibleMoves();
+        }
+
+        public ePiece GetWinner()
+        {
+            ePiece winner;
+            int whitePoints = m_Board.WhitePoints;
+            int blackPoints = m_Board.BlackPoints;
+
+            if (whitePoints == blackPoints) 
+            {
+                winner = ePiece.None;
+                m_BlackTotalWins++;
+                m_WhiteTotalWins++;
+            }
+            else if (whitePoints > blackPoints)
+            {
+                winner = ePiece.White;
+                m_WhiteTotalWins++;
+            }
+            else
+            {
+                winner = ePiece.Black;
+                m_BlackTotalWins++;
+            }
+
+            return winner;
         }
     }
 }
