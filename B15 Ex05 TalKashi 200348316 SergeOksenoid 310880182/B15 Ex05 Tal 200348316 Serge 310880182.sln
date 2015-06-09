@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EX5.Othello", "OthelloUI\EX5.Othello.csproj", "{E632885B-A3AA-4D8A-A151-6C84A55D7096}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EX5.Othello", "EX5.OthelloGame\EX5.Othello.csproj", "{E632885B-A3AA-4D8A-A151-6C84A55D7096}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

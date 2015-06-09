@@ -8,20 +8,20 @@ namespace EX5.Othello.UI
     internal class BoardWindow : Form
     {
         private CellButton[,] m_BoardButtons;
-        private Board m_GameBoard;
-        private GameState m_GameState;
+        private readonly Board r_GameBoard;
+        private readonly GameState r_GameState;
 
         public BoardWindow(GameState i_GameState)
         {
-            m_GameState = i_GameState;
-            m_GameBoard = i_GameState.GameBoard;
-            this.StartPosition = FormStartPosition.CenterScreen;
+            r_GameState = i_GameState;
+            r_GameBoard = i_GameState.GameBoard;
+            StartPosition = FormStartPosition.CenterScreen;
             initializeButtons();
-            this.Size = new Size(m_GameBoard.Size * 50, (m_GameBoard.Size * 50) + 20);
-            m_GameBoard.BoardChanged += m_GameBoard_BoardChanged;
-            m_GameState.PlayerTurnChanged += m_GameState_PlayerTurnChanged;
-            this.Text = string.Format("Othello - {0}'s Turn", m_GameState.CurrentPlayer);
-            m_GameState.GameIsOver += m_GameState_GameIsOver;
+            Size = new Size(r_GameBoard.Size * 50, (r_GameBoard.Size * 50) + 20);
+            r_GameBoard.BoardChanged += m_GameBoard_BoardChanged;
+            r_GameState.PlayerTurnChanged += m_GameState_PlayerTurnChanged;
+            Text = string.Format("Othello - {0}'s Turn", r_GameState.CurrentPlayer);
+            r_GameState.GameIsOver += m_GameState_GameIsOver;
         }
 
         private void m_GameState_GameIsOver()
@@ -32,30 +32,30 @@ namespace EX5.Othello.UI
         private void DisplayGameOverMessage()
         {
             string messageBody;
-            ePiece winner = m_GameState.GetWinner();
+            ePiece winner = r_GameState.GetWinner();
             if (winner == ePiece.None)
             {
-                messageBody = string.Format("Draw!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", m_GameBoard.BlackPoints, m_GameBoard.WhitePoints, m_GameState.BlackTotalWins, m_GameState.WhiteTotalWins, Environment.NewLine);
+                messageBody = string.Format("Draw!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", r_GameBoard.BlackPoints, r_GameBoard.WhitePoints, r_GameState.BlackTotalWins, r_GameState.WhiteTotalWins, Environment.NewLine);
             }
             else
             {
-                messageBody = string.Format("{5} Won!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", m_GameBoard.BlackPoints, m_GameBoard.WhitePoints, m_GameState.BlackTotalWins, m_GameState.WhiteTotalWins, Environment.NewLine, winner);
+                messageBody = string.Format("{5} Won!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", r_GameBoard.BlackPoints, r_GameBoard.WhitePoints, r_GameState.BlackTotalWins, r_GameState.WhiteTotalWins, Environment.NewLine, winner);
             }
 
             DialogResult dialogResult = MessageBox.Show(messageBody, "Othello", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (dialogResult == DialogResult.Yes)
             {
-                m_GameState.InitForNewGame();
+                r_GameState.InitForNewGame();
             }
             else if (dialogResult == DialogResult.No)
             {
-                this.Close();
+                Close();
             }
         }
 
         private void m_GameState_PlayerTurnChanged()
         {
-            this.Text = string.Format("Othello - {0}'s Turn", m_GameState.CurrentPlayer);
+            Text = string.Format("Othello - {0}'s Turn", r_GameState.CurrentPlayer);
         }
 
         private void m_GameBoard_BoardChanged(int i_X, int i_Y)
@@ -67,7 +67,7 @@ namespace EX5.Othello.UI
         {
             const bool v_IsPlayable = true;
 
-            switch (m_GameBoard[i_X, i_Y])
+            switch (r_GameBoard[i_X, i_Y])
             {
                 case ePiece.Black:
                     m_BoardButtons[i_X, i_Y].Text = "O";
@@ -94,16 +94,16 @@ namespace EX5.Othello.UI
         private void initializeButtons()
         {
             const bool v_IsEnabled = true;
-            m_BoardButtons = new CellButton[m_GameBoard.Size, m_GameBoard.Size];
+            m_BoardButtons = new CellButton[r_GameBoard.Size, r_GameBoard.Size];
 
-            for (int x = 0; x < m_GameBoard.Size; x++)
+            for (int x = 0; x < r_GameBoard.Size; x++)
             {
-                for (int y = 0; y < m_GameBoard.Size; y++)
+                for (int y = 0; y < r_GameBoard.Size; y++)
                 {
                     m_BoardButtons[x, y] = new CellButton(x, y);
                     m_BoardButtons[x, y].Enabled = !v_IsEnabled;
                     m_BoardButtons[x, y].Click += BoardWindow_Click;
-                    this.Controls.Add(m_BoardButtons[x, y]);
+                    Controls.Add(m_BoardButtons[x, y]);
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace EX5.Othello.UI
         private void BoardWindow_Click(object sender, EventArgs e)
         {
             CellButton buttonClicked = sender as CellButton;
-            m_GameState.PlayMove(buttonClicked.X, buttonClicked.Y);
+            r_GameState.PlayMove(buttonClicked.X, buttonClicked.Y);
         }
 
         private void placeButtonsInWindow()
@@ -119,7 +119,7 @@ namespace EX5.Othello.UI
             const int k_DistanceFromEdge = 10;
             const int k_DistanceFromButton = 5;
 
-            int buttonSize = (ClientSize.Width - (k_DistanceFromEdge * 2) - (k_DistanceFromButton * (m_GameBoard.Size - 1))) / m_GameBoard.Size;
+            int buttonSize = (ClientSize.Width - (k_DistanceFromEdge * 2) - (k_DistanceFromButton * (r_GameBoard.Size - 1))) / r_GameBoard.Size;
 
             for (int x = 0; x < m_BoardButtons.GetLength(0); x++)
             {
