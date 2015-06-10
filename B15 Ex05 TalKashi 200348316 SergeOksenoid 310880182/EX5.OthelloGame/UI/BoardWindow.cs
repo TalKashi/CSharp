@@ -18,11 +18,14 @@ namespace EX5.Othello.UI
             r_GameBoard = i_GameState.GameBoard;
 
             StartPosition = FormStartPosition.CenterScreen;
+
             initializeButtons();
+
             Size = new Size(r_GameBoard.Size * 50, (r_GameBoard.Size * 50) + 20);
+            Text = string.Format("Othello - {0}'s Turn", r_GameState.CurrentPlayer);
+
             r_GameBoard.BoardChanged += m_GameBoard_BoardChanged;
             r_GameState.PlayerTurnChanged += m_GameState_PlayerTurnChanged;
-            Text = string.Format("Othello - {0}'s Turn", r_GameState.CurrentPlayer);
             r_GameState.GameIsOver += m_GameState_GameIsOver;
         }
 
@@ -35,6 +38,7 @@ namespace EX5.Othello.UI
         {
             string messageBody;
             ePiece winner = r_GameState.GetWinner();
+
             if (winner == ePiece.None)
             {
                 messageBody = string.Format("Draw!! ({0}/{1}) ({2}/{3}){4}Would you like another round?", r_GameBoard.BlackPoints, r_GameBoard.WhitePoints, r_GameState.BlackTotalWins, r_GameState.WhiteTotalWins, Environment.NewLine);
