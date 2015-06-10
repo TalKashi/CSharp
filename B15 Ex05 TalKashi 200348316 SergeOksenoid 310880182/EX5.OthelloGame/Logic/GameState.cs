@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace EX5.Othello.Logic
 {
@@ -12,10 +10,11 @@ namespace EX5.Othello.Logic
     {
         private const ePiece k_ComputerPlayer = ePiece.Black;
 
+        private readonly Board r_Board;
+        private readonly bool r_IsTwoPlayers;
+
         private ePiece m_CurrentPlayer;
         private List<Move> m_PossibleMoves;
-        private Board m_Board;
-        private bool k_IsTwoPlayers;
         private int m_BlackTotalWins;
         private int m_WhiteTotalWins;
 
@@ -27,7 +26,7 @@ namespace EX5.Othello.Logic
         { 
             get
             {
-                return m_Board;
+                return r_Board;
             }
         }
 
@@ -57,8 +56,8 @@ namespace EX5.Othello.Logic
 
         public GameState(int i_BoardSize, bool i_IsTwoPlayers)
         {
-            m_Board = new Board(i_BoardSize);
-            k_IsTwoPlayers = i_IsTwoPlayers;
+            r_Board = new Board(i_BoardSize);
+            r_IsTwoPlayers = i_IsTwoPlayers;
             m_CurrentPlayer = ePiece.White;
         }
 
@@ -76,15 +75,15 @@ namespace EX5.Othello.Logic
             }
 
             cleanBoard();
-            GameLogic.ExcecuteMove(m_Board, moveToPlay, m_CurrentPlayer);
+            GameLogic.ExcecuteMove(r_Board, moveToPlay, m_CurrentPlayer);
             
             endOfMoveLogic();
 
-            if (!k_IsTwoPlayers && m_CurrentPlayer == k_ComputerPlayer)
+            while (!r_IsTwoPlayers && m_CurrentPlayer == k_ComputerPlayer)
             {
                 cleanBoard();
-                Move nextMove = GameAI.FindBestMove(m_PossibleMoves, m_CurrentPlayer, m_Board, 6);
-                GameLogic.ExcecuteMove(m_Board, nextMove, m_CurrentPlayer);
+                Move nextMove = GameAI.FindBestMove(m_PossibleMoves, m_CurrentPlayer, r_Board, 6);
+                GameLogic.ExcecuteMove(r_Board, nextMove, m_CurrentPlayer);
                 endOfMoveLogic();
             }
         }
@@ -92,7 +91,7 @@ namespace EX5.Othello.Logic
         private void endOfMoveLogic()
         {
             switchTurn();
-            if (GameLogic.IsGameOver(m_Board))
+            if (GameLogic.IsGameOver(r_Board))
             {
                 if (GameIsOver != null)
                 {
@@ -107,17 +106,17 @@ namespace EX5.Othello.Logic
 
         private void setPossibleMoves()
         {
-            m_PossibleMoves = GameLogic.GetPossibleMoves(m_Board, m_CurrentPlayer);
+            m_PossibleMoves = GameLogic.GetPossibleMoves(r_Board, m_CurrentPlayer);
 
             if (m_PossibleMoves.Count == 0)
             {
                 switchTurn();
-                m_PossibleMoves = GameLogic.GetPossibleMoves(m_Board, m_CurrentPlayer);
+                m_PossibleMoves = GameLogic.GetPossibleMoves(r_Board, m_CurrentPlayer);
             }
 
             foreach (Move move in m_PossibleMoves)
             {
-                m_Board[move.X, move.Y] = ePiece.Playable;
+                r_Board[move.X, move.Y] = ePiece.Playable;
             }
         }
 
@@ -135,21 +134,21 @@ namespace EX5.Othello.Logic
         {
             foreach (Move move in m_PossibleMoves) 
             {
-                m_Board[move.X, move.Y] = ePiece.None;
+                r_Board[move.X, move.Y] = ePiece.None;
             }
         }
 
         public void InitForNewGame()
         {
-            m_Board.InitForNewGame();
+            r_Board.InitForNewGame();
             setPossibleMoves();
         }
 
         public ePiece GetWinner()
         {
             ePiece winner;
-            int whitePoints = m_Board.WhitePoints;
-            int blackPoints = m_Board.BlackPoints;
+            int whitePoints = r_Board.WhitePoints;
+            int blackPoints = r_Board.BlackPoints;
 
             if (whitePoints == blackPoints) 
             {

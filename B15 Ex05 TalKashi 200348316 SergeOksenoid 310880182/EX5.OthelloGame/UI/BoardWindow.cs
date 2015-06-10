@@ -7,14 +7,16 @@ namespace EX5.Othello.UI
 {
     internal class BoardWindow : Form
     {
-        private CellButton[,] m_BoardButtons;
         private readonly Board r_GameBoard;
         private readonly GameState r_GameState;
+
+        private CellButton[,] m_BoardButtons;
 
         public BoardWindow(GameState i_GameState)
         {
             r_GameState = i_GameState;
             r_GameBoard = i_GameState.GameBoard;
+
             StartPosition = FormStartPosition.CenterScreen;
             initializeButtons();
             Size = new Size(r_GameBoard.Size * 50, (r_GameBoard.Size * 50) + 20);
@@ -26,10 +28,10 @@ namespace EX5.Othello.UI
 
         private void m_GameState_GameIsOver()
         {
-            DisplayGameOverMessage();
+            displayGameOverMessage();
         }
 
-        private void DisplayGameOverMessage()
+        private void displayGameOverMessage()
         {
             string messageBody;
             ePiece winner = r_GameState.GetWinner();
@@ -108,9 +110,9 @@ namespace EX5.Othello.UI
             }
         }
 
-        private void BoardWindow_Click(object sender, EventArgs e)
+        private void BoardWindow_Click(object i_Sender, EventArgs i_EventArgs)
         {
-            CellButton buttonClicked = sender as CellButton;
+            CellButton buttonClicked = i_Sender as CellButton;
             r_GameState.PlayMove(buttonClicked.X, buttonClicked.Y);
         }
 
@@ -131,9 +133,9 @@ namespace EX5.Othello.UI
             }
         }
 
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(EventArgs i_EventArgs)
         {
-            base.OnResize(e);
+            base.OnResize(i_EventArgs);
             placeButtonsInWindow();
         }
     }

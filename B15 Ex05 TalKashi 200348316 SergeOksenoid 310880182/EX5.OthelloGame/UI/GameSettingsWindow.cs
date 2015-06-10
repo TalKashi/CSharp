@@ -76,27 +76,27 @@ namespace EX5.Othello.UI
             r_PlayVsHumanButton.Top -= 10;
         }
 
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(EventArgs i_EventArgs)
         {
-            base.OnResize(e);
+            base.OnResize(i_EventArgs);
             placeComponentsInWindow();
         }
 
-        private void m_PlayVsComputerButton_Click(object sender, EventArgs e)
+        private void m_PlayVsComputerButton_Click(object i_Sender, EventArgs i_EventArgs)
         {
             m_IsTwoPlayers = false;
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void m_PlayVsHumanButton_Click(object sender, EventArgs e)
+        private void m_PlayVsHumanButton_Click(object i_Sender, EventArgs i_EventArgs)
         {
             m_IsTwoPlayers = true;
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void m_BoardSizeButton_Click(object sender, EventArgs e)
+        private void m_BoardSizeButton_Click(object i_Sender, EventArgs i_EventArgs)
         {
             updateBoardSize();
             r_BoardSizeButton.Text = string.Format("Board Size: {0}x{0} (click to change)", m_SelectedBoardSize);

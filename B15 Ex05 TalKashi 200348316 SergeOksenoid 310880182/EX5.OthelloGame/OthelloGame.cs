@@ -9,6 +9,7 @@ namespace EX5.Othello
         public void StartGame()
         {
             GameSettingsWindow gameSettingsWindow = new GameSettingsWindow();
+
             if (gameSettingsWindow.ShowDialog() == DialogResult.OK)
             {
                 GameState gameState = new GameState(gameSettingsWindow.BoardSize, gameSettingsWindow.IsTwoPlayers);
