@@ -17,12 +17,7 @@ namespace EX5.Othello.UI
             r_GameState = i_GameState;
             r_GameBoard = i_GameState.GameBoard;
 
-            StartPosition = FormStartPosition.CenterScreen;
-
-            initializeButtons();
-
-            Size = new Size(r_GameBoard.Size * 50, (r_GameBoard.Size * 50) + 20);
-            Text = string.Format("Othello - {0}'s Turn", r_GameState.CurrentPlayer);
+            initializeComponents();
 
             r_GameBoard.BoardChanged += m_GameBoard_BoardChanged;
             r_GameState.PlayerTurnChanged += m_GameState_PlayerTurnChanged;
@@ -97,10 +92,12 @@ namespace EX5.Othello.UI
             }
         }
 
-        private void initializeButtons()
+        private void initializeComponents()
         {
             const bool v_IsEnabled = true;
             m_BoardButtons = new CellButton[r_GameBoard.Size, r_GameBoard.Size];
+
+            StartPosition = FormStartPosition.CenterScreen;
 
             for (int x = 0; x < r_GameBoard.Size; x++)
             {
@@ -112,6 +109,9 @@ namespace EX5.Othello.UI
                     Controls.Add(m_BoardButtons[x, y]);
                 }
             }
+
+            Size = new Size(r_GameBoard.Size * 50, (r_GameBoard.Size * 50) + 20);
+            Text = string.Format("Othello - {0}'s Turn", r_GameState.CurrentPlayer);
         }
 
         private void BoardWindow_Click(object i_Sender, EventArgs i_EventArgs)
