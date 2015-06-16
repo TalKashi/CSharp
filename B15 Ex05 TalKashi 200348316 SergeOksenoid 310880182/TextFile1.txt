@@ -6,5 +6,5 @@ Delivery Date.........: 16 - June - 2015
 Delivered In Delay....: No
 Delay Reason..........: None
 Visual Studio Version.: 2013
-Comments..............: Following a discution with Guy Ronen, in order to color the text inside the button I kept the 'Enabled' property to true and removed it from the event.
+Comments..............: Following a discussion with Guy Ronen, in order to color the text inside the button I kept the 'Enabled' property to true and removed it from the event.
 ========================End Exercise Checking Report========================
