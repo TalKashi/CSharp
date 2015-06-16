@@ -1,0 +1,10 @@
+==========================Exercise Checking Report==========================
+Exercise No...........: 5
+First Student Details.: 200348316 - Tal Kashi
+Second Student Details: 310880182 - Serge Oksenoid
+Delivery Date.........: 16 - June - 2015
+Delivered In Delay....: No
+Delay Reason..........: None
+Visual Studio Version.: 2013
+Comments..............: Following a discution with Guy Ronen, in order to color the text inside the button I kept the 'Enabled' property to true and removed it from the event.
+========================End Exercise Checking Report========================

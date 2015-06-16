@@ -10,12 +10,13 @@ namespace EX5.Othello.UI
         private readonly Board r_GameBoard;
         private readonly GameState r_GameState;
 
-        private CellButton[,] m_BoardButtons;
+        private readonly CellButton[,] r_BoardButtons;
 
         public BoardWindow(GameState i_GameState)
         {
             r_GameState = i_GameState;
             r_GameBoard = i_GameState.GameBoard;
+            r_BoardButtons = new CellButton[r_GameBoard.Size, r_GameBoard.Size];
 
             initializeComponents();
 
@@ -66,47 +67,44 @@ namespace EX5.Othello.UI
 
         private void handleBoardChanged(int i_X, int i_Y)
         {
-            const bool v_IsPlayable = true;
-
             switch (r_GameBoard[i_X, i_Y])
             {
                 case ePiece.Black:
-                    m_BoardButtons[i_X, i_Y].Text = "O";
-                    m_BoardButtons[i_X, i_Y].BackColor = Color.Black;
-                    m_BoardButtons[i_X, i_Y].Enabled = !v_IsPlayable;
+                    r_BoardButtons[i_X, i_Y].Text = "O";
+                    r_BoardButtons[i_X, i_Y].ForeColor = Color.White;
+                    r_BoardButtons[i_X, i_Y].BackColor = Color.Black;
+                    r_BoardButtons[i_X, i_Y].Click -= BoardWindow_Click;
                     break;
                 case ePiece.White:
-                    m_BoardButtons[i_X, i_Y].Text = "O";
-                    m_BoardButtons[i_X, i_Y].BackColor = Color.White;
-                    m_BoardButtons[i_X, i_Y].Enabled = !v_IsPlayable;
+                    r_BoardButtons[i_X, i_Y].Text = "O";
+                    r_BoardButtons[i_X, i_Y].ForeColor = Color.Black;
+                    r_BoardButtons[i_X, i_Y].BackColor = Color.White;
+                    r_BoardButtons[i_X, i_Y].Click -= BoardWindow_Click;
                     break;
                 case ePiece.None:
-                    m_BoardButtons[i_X, i_Y].Text = string.Empty;
-                    m_BoardButtons[i_X, i_Y].BackColor = DefaultBackColor;
-                    m_BoardButtons[i_X, i_Y].Enabled = !v_IsPlayable;
+                    r_BoardButtons[i_X, i_Y].Text = string.Empty;
+                    r_BoardButtons[i_X, i_Y].BackColor = DefaultBackColor;
+                    r_BoardButtons[i_X, i_Y].Click -= BoardWindow_Click;
                     break;
                 case ePiece.Playable:
-                    m_BoardButtons[i_X, i_Y].BackColor = Color.Green;
-                    m_BoardButtons[i_X, i_Y].Enabled = v_IsPlayable;
+                    r_BoardButtons[i_X, i_Y].BackColor = Color.Green;
+                    r_BoardButtons[i_X, i_Y].Click += BoardWindow_Click;
                     break;
             }
         }
 
         private void initializeComponents()
         {
-            const bool v_IsEnabled = true;
-            m_BoardButtons = new CellButton[r_GameBoard.Size, r_GameBoard.Size];
-
             StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
 
             for (int x = 0; x < r_GameBoard.Size; x++)
             {
                 for (int y = 0; y < r_GameBoard.Size; y++)
                 {
-                    m_BoardButtons[x, y] = new CellButton(x, y);
-                    m_BoardButtons[x, y].Enabled = !v_IsEnabled;
-                    m_BoardButtons[x, y].Click += BoardWindow_Click;
-                    Controls.Add(m_BoardButtons[x, y]);
+                    r_BoardButtons[x, y] = new CellButton(x, y);
+                    Controls.Add(r_BoardButtons[x, y]);
                 }
             }
 
@@ -116,7 +114,7 @@ namespace EX5.Othello.UI
 
         private void BoardWindow_Click(object i_Sender, EventArgs i_EventArgs)
         {
-            CellButton buttonClicked = i_Sender as CellButton;
+            CellButton buttonClicked = (CellButton) i_Sender;
             r_GameState.PlayMove(buttonClicked.X, buttonClicked.Y);
         }
 
@@ -127,12 +125,12 @@ namespace EX5.Othello.UI
 
             int buttonSize = (ClientSize.Width - (k_DistanceFromEdge * 2) - (k_DistanceFromButton * (r_GameBoard.Size - 1))) / r_GameBoard.Size;
 
-            for (int x = 0; x < m_BoardButtons.GetLength(0); x++)
+            for (int x = 0; x < r_BoardButtons.GetLength(0); x++)
             {
-                for (int y = 0; y < m_BoardButtons.GetLength(0); y++)
+                for (int y = 0; y < r_BoardButtons.GetLength(0); y++)
                 {
-                    m_BoardButtons[x, y].Size = new Size(buttonSize, buttonSize);
-                    m_BoardButtons[x, y].Location = new Point((x * buttonSize) + (k_DistanceFromButton * x) + k_DistanceFromEdge, (y * buttonSize) + (k_DistanceFromButton * y) + k_DistanceFromEdge);
+                    r_BoardButtons[x, y].Size = new Size(buttonSize, buttonSize);
+                    r_BoardButtons[x, y].Location = new Point((x * buttonSize) + (k_DistanceFromButton * x) + k_DistanceFromEdge, (y * buttonSize) + (k_DistanceFromButton * y) + k_DistanceFromEdge);
                 }
             }
         }

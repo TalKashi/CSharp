@@ -39,6 +39,7 @@ namespace EX5.Othello.UI
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
+
             Text = "Othello - Game Settings";
 
             r_BoardSizeButton.Text = string.Format("Board Size: {0}x{0} (click to change)", m_SelectedBoardSize);
